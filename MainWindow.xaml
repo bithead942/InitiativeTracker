@@ -1,0 +1,1371 @@
+﻿<Window x:Class="InitiativeTracker.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:InitiativeTracker"
+        mc:Ignorable="d"
+        Title="D&amp;D Initiative Tracker 1.0" Height="600" Width="345" FontSize="10" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Loaded="Window_Loaded" Closing="Window_Closing">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition Width="2*"/>
+        </Grid.ColumnDefinitions>
+        <StackPanel Orientation="Vertical" Height="600" Width="320" Grid.ColumnSpan="2" Margin="8,0,7,-16">
+
+            <ScrollViewer x:Name="ScrollBar" CanContentScroll="True" PanningMode="VerticalOnly" VerticalScrollBarVisibility="Visible">
+                <StackPanel x:Name="spMain" Orientation="Vertical" VerticalAlignment="Top" Margin="2,5,20,0" Height="500" Width="281">
+
+                    <!-- Character 1 -->
+                    <Border x:Name="borderCharacter1" Visibility="Visible" Background="Yellow" BorderBrush="Blue" CornerRadius="5" BorderThickness="2" Margin="0,1">
+                        <StackPanel x:Name="spCharacter1" Height="60" Width="280">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="1*" />
+                                    <ColumnDefinition Width="7*" />
+                                    <ColumnDefinition Width="3*" />
+                                    <ColumnDefinition Width="4*" />
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="20" />
+                                    <RowDefinition Height="20" />
+                                    <RowDefinition Height="20" />
+                                </Grid.RowDefinitions>
+                                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="0" Grid.Column="0" Grid.RowSpan="3">
+                                    <TextBlock x:Name="txtInitiative1" FontWeight="Bold" FontSize="14" Background="#00000000" Text="1"/>
+                                </StackPanel>
+                                <TextBox x:Name="txtName1" Text="Fenric" TextWrapping="Wrap" Width="130" HorizontalAlignment="Left" FontWeight="Bold" Grid.Column="1" Grid.Row="0" FontSize="12" BorderBrush="#00000000" Background="#00000000"/>
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Grid.Column="3" Grid.Row="0">
+                                    <Image x:Name="btnUp1" Source="/UpArrow.jpg" Width="18" Height="18" Margin="1,0" MouseDown="btnUp1_MouseDown" Cursor="Hand"/>
+                                    <Image x:Name="btnDown1" Source="/DownArrow.jpg" Width="18" Height="18" Margin="1,0" MouseDown="btnDown1_MouseDown" Cursor="Hand"/>
+                                    <Image x:Name="btnDelete1" Source="/Delete.jpg" Width="18" Height="18" Margin="1,0" MouseDown="btnDelete1_MouseDown" Cursor="Hand"/>
+                                </StackPanel>
+                                <CheckBox x:Name="Lock1"  Content="Lock" HorizontalAlignment="Center" Grid.Column="2" Grid.Row="0" IsChecked="True" VerticalAlignment="Center" Click="Lock1_Clicked"/>
+                                <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3">
+                                    <StackPanel Orientation="Horizontal">
+                                        <!--Always Visible-->
+                                        <TextBlock VerticalAlignment="Center"><Run Text="Init:"/></TextBlock>
+                                        <TextBox  x:Name="txtInit1" Width="20" VerticalAlignment="Center" Margin="2,0" TextAlignment="Right" Text="0" PreviewTextInput="IsTextAllowed" GotKeyboardFocus="txtInit1_GotKeyboardFocus"/>
+                                    </StackPanel>
+                                    <StackPanel x:Name="spTracker1" Visibility="Visible" Orientation="Horizontal">
+                                        <TextBlock VerticalAlignment="Center" Margin="5,0"><Run Text="|"/></TextBlock>
+                                        <TextBlock x:Name="lblAC1" VerticalAlignment="Center" MouseDown="lblAC1_MouseDown"><Run Text="AC:"/></TextBlock>
+                                        <TextBox  x:Name="txtACLow1" ToolTip="Highest Miss" Width="20" VerticalAlignment="Center" Margin="2,0" TextAlignment="Right" Text="0" PreviewTextInput="IsTextAllowed" GotKeyboardFocus="txtACLow1_GotKeyboardFocus" />
+                                        <TextBlock x:Name="txtDash1" VerticalAlignment="Center" ><Run Text="-"/></TextBlock>
+                                        <TextBox  x:Name="txtACHigh1" ToolTip="Lowest Hit" Width="20" VerticalAlignment="Center" Margin="2,0" TextAlignment="Right" Text="20" PreviewTextInput="IsTextAllowed" GotKeyboardFocus="txtACHigh1_GotKeyboardFocus"/>
+                                        <TextBlock VerticalAlignment="Center" Margin="5,0"><Run Text="|"/></TextBlock>
+                                        <TextBlock x:Name="lblHP1" VerticalAlignment="Center"><Run Text="HP:"/></TextBlock>
+                                        <TextBox x:Name="txtTotalDamage1" Width="30" VerticalAlignment="Center" Margin="2,0" TextAlignment="Right" Text="0" PreviewTextInput="IsTextAllowed" GotKeyboardFocus="txtTotalDamage1_GotKeyboardFocus"/>
+                                        <TextBlock VerticalAlignment="Center" FontFamily="Wingdings" Margin="2,0"><Run Text=""/></TextBlock>
+                                        <TextBox x:Name="txtAddDamageAmount1" Width="20" VerticalAlignment="Center" TextAlignment="Right" Text="" PreviewTextInput="IsTextAllowed" GotKeyboardFocus="txtAddDamageAmount1_GotKeyboardFocus" />
+                                        <Button x:Name="btnAddDamage1" Margin="5,0,3,0" Height="15" Width="15" Content="+" Click="btnAddDamage1_Click"/>
+                                        <Button x:Name="btnSubtractDamage1" Margin="3,0,5,0" Height="15" Width="15" Content="-" Click="btnSubtractDamage1_Click"/>
+                                    </StackPanel>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="3">
+                                    <TextBlock Text="Condition:" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                                    <ComboBox x:Name="Condition1a" Text="Normal" Width="80" HorizontalAlignment="Left" Margin="5,0" DropDownClosed="Condition1a_DropDownClosed">
+                                        <ComboBoxItem IsSelected="True" Content="Normal"/>
+                                        <ComboBoxItem Content="Blinded"/>
+                                        <ComboBoxItem Content="Charmed"/>
+                                        <ComboBoxItem Content="Dead"/>
+                                        <ComboBoxItem Content="Deafened"/>
+                                        <ComboBoxItem Content="Frightened"/>
+                                        <ComboBoxItem Content="Grappled"/>
+                                        <ComboBoxItem Content="Incapacitated"/>
+                                        <ComboBoxItem Content="Invisible"/>
+                                        <ComboBoxItem Content="Paralyzed"/>
+                                        <ComboBoxItem Content="Petrified"/>
+                                        <ComboBoxItem Content="Poisoned"/>
+                                        <ComboBoxItem Content="Prone"/>
+                                        <ComboBoxItem Content="Restrained"/>
+                                        <ComboBoxItem Content="Stunned"/>
+                                        <ComboBoxItem Content="Unconcious"/>
+                                    </ComboBox>
+                                    <ComboBox x:Name="Condition1b" Visibility="Hidden" Width="80" HorizontalAlignment="Left" Margin="5,0">
+                                        <ComboBoxItem IsSelected="True" Content=""/>
+                                        <ComboBoxItem Content="Blinded"/>
+                                        <ComboBoxItem Content="Charmed"/>
+                                        <ComboBoxItem Content="Dead"/>
+                                        <ComboBoxItem Content="Deafened"/>
+                                        <ComboBoxItem Content="Frightened"/>
+                                        <ComboBoxItem Content="Grappled"/>
+                                        <ComboBoxItem Content="Incapacitated"/>
+                                        <ComboBoxItem Content="Invisible"/>
+                                        <ComboBoxItem Content="Paralyzed"/>
+                                        <ComboBoxItem Content="Petrified"/>
+                                        <ComboBoxItem Content="Poisoned"/>
+                                        <ComboBoxItem Content="Prone"/>
+                                        <ComboBoxItem Content="Restrained"/>
+                                        <ComboBoxItem Content="Stunned"/>
+                                        <ComboBoxItem Content="Unconcious"/>
+                                    </ComboBox>
+                                </StackPanel>
+                            </Grid>
+                        </StackPanel>
+                    </Border>
+
+                    <!-- Character 2 -->
+                    <Border x:Name="borderCharacter2" Visibility="Visible" BorderBrush="Blue" CornerRadius="5" BorderThickness="1" Margin="0,1">
+                        <StackPanel x:Name="spCharacter2" Height="60" Width="280">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="1*" />
+                                    <ColumnDefinition Width="7*" />
+                                    <ColumnDefinition Width="3*" />
+                                    <ColumnDefinition Width="4*" />
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="20" />
+                                    <RowDefinition Height="20" />
+                                    <RowDefinition Height="20" />
+                                </Grid.RowDefinitions>
+                                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="0" Grid.Column="0" Grid.RowSpan="3">
+                                    <TextBlock x:Name="txtInitiative2" FontWeight="Bold" FontSize="14" Background="#00000000" Text="2"/>
+                                </StackPanel>
+                                <TextBox x:Name="txtName2" Text="Monster 1" TextWrapping="Wrap" Width="130" HorizontalAlignment="Left" FontWeight="Bold" Grid.Column="1" Grid.Row="0" FontSize="12" BorderBrush="#00000000" Background="#00000000"/>
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Grid.Column="3" Grid.Row="0">
+                                    <Image x:Name="btnUp2" Source="/UpArrow.jpg" Width="18" Height="18" Margin="1,0" MouseDown="btnUp2_MouseDown" Cursor="Hand"/>
+                                    <Image x:Name="btnDown2" Source="/DownArrow.jpg" Width="18" Height="18" Margin="1,0" MouseDown="btnDown2_MouseDown" Cursor="Hand"/>
+                                    <Image x:Name="btnDelete2" Source="/Delete.jpg" Width="18" Height="18" Margin="1,0" MouseDown="btnDelete2_MouseDown" Cursor="Hand"/>
+                                </StackPanel>
+                                <CheckBox x:Name="Lock2" Content="Lock" HorizontalAlignment="Center" Grid.Column="2" Grid.Row="0" VerticalAlignment="Center" Click="Lock2_Clicked"/>
+                                <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3">
+                                    <StackPanel Orientation="Horizontal">
+                                        <!--Always Visible-->
+                                        <TextBlock VerticalAlignment="Center"><Run Text="Init:"/></TextBlock>
+                                        <TextBox  x:Name="txtInit2" Width="20" VerticalAlignment="Center" Margin="2,0" TextAlignment="Right" Text="0" PreviewTextInput="IsTextAllowed" GotKeyboardFocus="txtInit2_GotKeyboardFocus"/>
+                                    </StackPanel>
+                                    <StackPanel x:Name="spTracker2" Visibility="Visible" Orientation="Horizontal">
+                                        <TextBlock VerticalAlignment="Center" Margin="5,0"><Run Text="|"/></TextBlock>
+                                        <TextBlock x:Name="lblAC2" VerticalAlignment="Center" MouseDown="lblAC2_MouseDown"><Run Text="AC:"/></TextBlock>
+                                        <TextBox  x:Name="txtACLow2" ToolTip="Highest Miss" Width="20" VerticalAlignment="Center" Margin="2,0" TextAlignment="Right" Text="0" PreviewTextInput="IsTextAllowed" GotKeyboardFocus="txtACLow2_GotKeyboardFocus"/>
+                                        <TextBlock x:Name="txtDash2" VerticalAlignment="Center" ><Run Text="-"/></TextBlock>
+                                        <TextBox  x:Name="txtACHigh2" ToolTip="Lowest Hit" Width="20" VerticalAlignment="Center" Margin="2,0" TextAlignment="Right" Text="20" PreviewTextInput="IsTextAllowed" GotKeyboardFocus="txtACHigh2_GotKeyboardFocus"/>
+                                        <TextBlock VerticalAlignment="Center" Margin="5,0"><Run Text="|"/></TextBlock>
+                                        <TextBlock x:Name="lblHP2" VerticalAlignment="Center"><Run Text="HP:"/></TextBlock>
+                                        <TextBox x:Name="txtTotalDamage2" Width="30" VerticalAlignment="Center" Margin="2,0" TextAlignment="Right" Text="0" PreviewTextInput="IsTextAllowed" GotKeyboardFocus="txtTotalDamage2_GotKeyboardFocus"/>
+                                        <TextBlock VerticalAlignment="Center" FontFamily="Wingdings" Margin="2,0"><Run Text=""/></TextBlock>
+                                        <TextBox x:Name="txtAddDamageAmount2" Width="20" VerticalAlignment="Center" TextAlignment="Right" Text="" PreviewTextInput="IsTextAllowed" GotKeyboardFocus="txtAddDamageAmount2_GotKeyboardFocus" />
+                                        <Button x:Name="btnAddDamage2" Margin="5,0,3,0" Height="15" Width="15" Content="+" Click="btnAddDamage2_Click"/>
+                                        <Button x:Name="btnSubtractDamage2" Margin="3,0,5,0" Height="15" Width="15" Content="-" Click="btnSubtractDamage2_Click"/>
+                                    </StackPanel>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="3">
+                                    <TextBlock Text="Condition:" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                                    <ComboBox x:Name="Condition2a" Text="Normal" Width="80" HorizontalAlignment="Left" Margin="5,0" DropDownClosed="Condition2a_DropDownClosed">
+                                        <ComboBoxItem IsSelected="True" Content="Normal"/>
+                                        <ComboBoxItem Content="Blinded"/>
+                                        <ComboBoxItem Content="Charmed"/>
+                                        <ComboBoxItem Content="Dead"/>
+                                        <ComboBoxItem Content="Deafened"/>
+                                        <ComboBoxItem Content="Frightened"/>
+                                        <ComboBoxItem Content="Grappled"/>
+                                        <ComboBoxItem Content="Incapacitated"/>
+                                        <ComboBoxItem Content="Invisible"/>
+                                        <ComboBoxItem Content="Paralyzed"/>
+                                        <ComboBoxItem Content="Petrified"/>
+                                        <ComboBoxItem Content="Poisoned"/>
+                                        <ComboBoxItem Content="Prone"/>
+                                        <ComboBoxItem Content="Restrained"/>
+                                        <ComboBoxItem Content="Stunned"/>
+                                        <ComboBoxItem Content="Unconcious"/>
+                                    </ComboBox>
+                                    <ComboBox x:Name="Condition2b" Visibility="Hidden" Text="Normal" Width="80" HorizontalAlignment="Left" Margin="5,0">
+                                        <ComboBoxItem IsSelected="True" Content=""/>
+                                        <ComboBoxItem Content="Blinded"/>
+                                        <ComboBoxItem Content="Charmed"/>
+                                        <ComboBoxItem Content="Dead"/>
+                                        <ComboBoxItem Content="Deafened"/>
+                                        <ComboBoxItem Content="Frightened"/>
+                                        <ComboBoxItem Content="Grappled"/>
+                                        <ComboBoxItem Content="Incapacitated"/>
+                                        <ComboBoxItem Content="Invisible"/>
+                                        <ComboBoxItem Content="Paralyzed"/>
+                                        <ComboBoxItem Content="Petrified"/>
+                                        <ComboBoxItem Content="Poisoned"/>
+                                        <ComboBoxItem Content="Prone"/>
+                                        <ComboBoxItem Content="Restrained"/>
+                                        <ComboBoxItem Content="Stunned"/>
+                                        <ComboBoxItem Content="Unconcious"/>
+                                    </ComboBox>
+                                </StackPanel>
+
+                            </Grid>
+                        </StackPanel>
+                    </Border>
+
+                    <!-- Character 3 -->
+                    <Border x:Name="borderCharacter3" Visibility="Visible" BorderBrush="Blue" CornerRadius="5" BorderThickness="1" Margin="0,1">
+                        <StackPanel x:Name="spCharacter3" Height="60" Width="280">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="1*" />
+                                    <ColumnDefinition Width="7*" />
+                                    <ColumnDefinition Width="3*" />
+                                    <ColumnDefinition Width="4*" />
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="20" />
+                                    <RowDefinition Height="20" />
+                                    <RowDefinition Height="20" />
+                                </Grid.RowDefinitions>
+                                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="0" Grid.Column="0" Grid.RowSpan="3">
+                                    <TextBlock x:Name="txtInitiative3" FontWeight="Bold" FontSize="14" Background="#00000000" Text="3"/>
+                                </StackPanel>
+                                <TextBox x:Name="txtName3" Text="Monster 2" TextWrapping="Wrap" Width="130" HorizontalAlignment="Left" FontWeight="Bold" Grid.Column="1" Grid.Row="0" FontSize="12" BorderBrush="#00000000" Background="#00000000"/>
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Grid.Column="3" Grid.Row="0">
+                                    <Image x:Name="btnUp3" Source="/UpArrow.jpg" Width="18" Height="18" Margin="1,0" MouseDown="btnUp3_MouseDown" Cursor="Hand"/>
+                                    <Image x:Name="btnDown3" Source="/DownArrow.jpg" Width="18" Height="18" Margin="1,0" MouseDown="btnDown3_MouseDown" Cursor="Hand"/>
+                                    <Image x:Name="btnDelete3" Source="/Delete.jpg" Width="18" Height="18" Margin="1,0" MouseDown="btnDelete3_MouseDown" Cursor="Hand"/>
+                                </StackPanel>
+                                <CheckBox x:Name="Lock3" Content="Lock" HorizontalAlignment="Center" Grid.Column="2" Grid.Row="0" VerticalAlignment="Center" Click="Lock3_Clicked"/>
+                                <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3">
+                                    <StackPanel Orientation="Horizontal">
+                                        <!--Always Visible-->
+                                        <TextBlock VerticalAlignment="Center"><Run Text="Init:"/></TextBlock>
+                                        <TextBox  x:Name="txtInit3" Width="20" VerticalAlignment="Center" Margin="2,0" TextAlignment="Right" Text="0" PreviewTextInput="IsTextAllowed" GotKeyboardFocus="txtInit3_GotKeyboardFocus"/>
+                                    </StackPanel>
+                                    <StackPanel x:Name="spTracker3" Visibility="Visible" Orientation="Horizontal">
+                                        <TextBlock VerticalAlignment="Center" Margin="5,0"><Run Text="|"/></TextBlock>
+                                        <TextBlock x:Name="lblAC3" VerticalAlignment="Center" MouseDown="lblAC3_MouseDown"><Run Text="AC:"/></TextBlock>
+                                        <TextBox  x:Name="txtACLow3" ToolTip="Highest Miss" Width="20" VerticalAlignment="Center" Margin="2,0" TextAlignment="Right" Text="0" PreviewTextInput="IsTextAllowed" GotKeyboardFocus="txtACLow3_GotKeyboardFocus"/>
+                                        <TextBlock x:Name="txtDash3" VerticalAlignment="Center" ><Run Text="-"/></TextBlock>
+                                        <TextBox  x:Name="txtACHigh3" ToolTip="Lowest Hit" Width="20" VerticalAlignment="Center" Margin="2,0" TextAlignment="Right" Text="20" PreviewTextInput="IsTextAllowed" GotKeyboardFocus="txtACHigh3_GotKeyboardFocus"/>
+                                        <TextBlock VerticalAlignment="Center" Margin="5,0"><Run Text="|"/></TextBlock>
+                                        <TextBlock x:Name="lblHP3" VerticalAlignment="Center"><Run Text="HP:"/></TextBlock>
+                                        <TextBox x:Name="txtTotalDamage3" Width="30" VerticalAlignment="Center" Margin="2,0" TextAlignment="Right" Text="0" PreviewTextInput="IsTextAllowed" GotKeyboardFocus="txtTotalDamage3_GotKeyboardFocus"/>
+                                        <TextBlock VerticalAlignment="Center" FontFamily="Wingdings" Margin="2,0"><Run Text=""/></TextBlock>
+                                        <TextBox x:Name="txtAddDamageAmount3" Width="20" VerticalAlignment="Center" TextAlignment="Right" Text="" PreviewTextInput="IsTextAllowed" GotKeyboardFocus="txtAddDamageAmount3_GotKeyboardFocus" />
+                                        <Button x:Name="btnAddDamage3" Margin="5,0,3,0" Height="15" Width="15" Content="+" Click="btnAddDamage3_Click"/>
+                                        <Button x:Name="btnSubtractDamage3" Margin="3,0,5,0" Height="15" Width="15" Content="-" Click="btnSubtractDamage3_Click"/>
+                                    </StackPanel>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="3">
+                                    <TextBlock Text="Condition:" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                                    <ComboBox x:Name="Condition3a" Text="Normal" Width="80" HorizontalAlignment="Left" Margin="5,0" DropDownClosed="Condition3a_DropDownClosed">
+                                        <ComboBoxItem IsSelected="True" Content="Normal"/>
+                                        <ComboBoxItem Content="Blinded"/>
+                                        <ComboBoxItem Content="Charmed"/>
+                                        <ComboBoxItem Content="Dead"/>
+                                        <ComboBoxItem Content="Deafened"/>
+                                        <ComboBoxItem Content="Frightened"/>
+                                        <ComboBoxItem Content="Grappled"/>
+                                        <ComboBoxItem Content="Incapacitated"/>
+                                        <ComboBoxItem Content="Invisible"/>
+                                        <ComboBoxItem Content="Paralyzed"/>
+                                        <ComboBoxItem Content="Petrified"/>
+                                        <ComboBoxItem Content="Poisoned"/>
+                                        <ComboBoxItem Content="Prone"/>
+                                        <ComboBoxItem Content="Restrained"/>
+                                        <ComboBoxItem Content="Stunned"/>
+                                        <ComboBoxItem Content="Unconcious"/>
+                                    </ComboBox>
+                                    <ComboBox x:Name="Condition3b" Visibility="Hidden" Text="Normal" Width="80" HorizontalAlignment="Left" Margin="5,0">
+                                        <ComboBoxItem IsSelected="True" Content=""/>
+                                        <ComboBoxItem Content="Blinded"/>
+                                        <ComboBoxItem Content="Charmed"/>
+                                        <ComboBoxItem Content="Dead"/>
+                                        <ComboBoxItem Content="Deafened"/>
+                                        <ComboBoxItem Content="Frightened"/>
+                                        <ComboBoxItem Content="Grappled"/>
+                                        <ComboBoxItem Content="Incapacitated"/>
+                                        <ComboBoxItem Content="Invisible"/>
+                                        <ComboBoxItem Content="Paralyzed"/>
+                                        <ComboBoxItem Content="Petrified"/>
+                                        <ComboBoxItem Content="Poisoned"/>
+                                        <ComboBoxItem Content="Prone"/>
+                                        <ComboBoxItem Content="Restrained"/>
+                                        <ComboBoxItem Content="Stunned"/>
+                                        <ComboBoxItem Content="Unconcious"/>
+                                    </ComboBox>
+                                </StackPanel>
+
+                            </Grid>
+                        </StackPanel>
+                    </Border>
+
+                    <!-- Character 4 -->
+                    <Border x:Name="borderCharacter4" Visibility="Visible" BorderBrush="Blue" CornerRadius="5" BorderThickness="1" Margin="0,1">
+                        <StackPanel x:Name="spCharacter4" Height="60" Width="280">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="1*" />
+                                    <ColumnDefinition Width="7*" />
+                                    <ColumnDefinition Width="3*" />
+                                    <ColumnDefinition Width="4*" />
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="20" />
+                                    <RowDefinition Height="20" />
+                                    <RowDefinition Height="20" />
+                                </Grid.RowDefinitions>
+                                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="0" Grid.Column="0" Grid.RowSpan="3">
+                                    <TextBlock x:Name="txtInitiative4" FontWeight="Bold" FontSize="14" Background="#00000000" Text="4"/>
+                                </StackPanel>
+                                <TextBox x:Name="txtName4" Text="Ash" TextWrapping="Wrap" Width="130" HorizontalAlignment="Left" FontWeight="Bold" Grid.Column="1" Grid.Row="0" FontSize="12" BorderBrush="#00000000" Background="#00000000"/>
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Grid.Column="3" Grid.Row="0">
+                                    <Image x:Name="btnUp4" Source="/UpArrow.jpg" Width="18" Height="18" Margin="1,0" MouseDown="btnUp4_MouseDown" Cursor="Hand"/>
+                                    <Image x:Name="btnDown4" Source="/DownArrow.jpg" Width="18" Height="18" Margin="1,0" MouseDown="btnDown4_MouseDown" Cursor="Hand"/>
+                                    <Image x:Name="btnDelete4" Source="/Delete.jpg" Width="18" Height="18" Margin="1,0" MouseDown="btnDelete4_MouseDown" Cursor="Hand"/>
+                                </StackPanel>
+                                <CheckBox x:Name="Lock4" Content="Lock" HorizontalAlignment="Center" Grid.Column="2" Grid.Row="0" VerticalAlignment="Center" IsChecked="True" Click="Lock4_Clicked"/>
+                                <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3">
+                                    <StackPanel Orientation="Horizontal">
+                                        <!--Always Visible-->
+                                        <TextBlock VerticalAlignment="Center"><Run Text="Init:"/></TextBlock>
+                                        <TextBox  x:Name="txtInit4" Width="20" VerticalAlignment="Center" Margin="2,0" TextAlignment="Right" Text="0" PreviewTextInput="IsTextAllowed" GotKeyboardFocus="txtInit4_GotKeyboardFocus"/>
+                                    </StackPanel>
+                                    <StackPanel x:Name="spTracker4" Visibility="Visible" Orientation="Horizontal">
+                                        <TextBlock VerticalAlignment="Center" Margin="5,0"><Run Text="|"/></TextBlock>
+                                        <TextBlock x:Name="lblAC4" VerticalAlignment="Center" MouseDown="lblAC4_MouseDown"><Run Text="AC:"/></TextBlock>
+                                        <TextBox  x:Name="txtACLow4" ToolTip="Highest Miss" Width="20" VerticalAlignment="Center" Margin="2,0" TextAlignment="Right" Text="0" PreviewTextInput="IsTextAllowed" GotKeyboardFocus="txtACLow4_GotKeyboardFocus"/>
+                                        <TextBlock x:Name="txtDash4" VerticalAlignment="Center" ><Run Text="-"/></TextBlock>
+                                        <TextBox  x:Name="txtACHigh4" ToolTip="Lowest Hit" Width="20" VerticalAlignment="Center" Margin="2,0" TextAlignment="Right" Text="20" PreviewTextInput="IsTextAllowed" GotKeyboardFocus="txtACHigh4_GotKeyboardFocus"/>
+                                        <TextBlock VerticalAlignment="Center" Margin="5,0"><Run Text="|"/></TextBlock>
+                                        <TextBlock x:Name="lblHP4" VerticalAlignment="Center"><Run Text="HP:"/></TextBlock>
+                                        <TextBox x:Name="txtTotalDamage4" Width="30" VerticalAlignment="Center" Margin="2,0" TextAlignment="Right" Text="0" PreviewTextInput="IsTextAllowed" GotKeyboardFocus="txtTotalDamage4_GotKeyboardFocus"/>
+                                        <TextBlock VerticalAlignment="Center" FontFamily="Wingdings" Margin="2,0"><Run Text=""/></TextBlock>
+                                        <TextBox x:Name="txtAddDamageAmount4" Width="20" VerticalAlignment="Center" TextAlignment="Right" Text="" PreviewTextInput="IsTextAllowed" GotKeyboardFocus="txtAddDamageAmount4_GotKeyboardFocus" />
+                                        <Button x:Name="btnAddDamage4" Margin="5,0,3,0" Height="15" Width="15" Content="+" Click="btnAddDamage4_Click"/>
+                                        <Button x:Name="btnSubtractDamage4" Margin="3,0,5,0" Height="15" Width="15" Content="-" Click="btnSubtractDamage4_Click"/>
+                                    </StackPanel>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="3">
+                                    <TextBlock Text="Condition:" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                                    <ComboBox x:Name="Condition4a" Text="Normal" Width="80" HorizontalAlignment="Left" Margin="5,0" DropDownClosed="Condition4a_DropDownClosed">
+                                        <ComboBoxItem IsSelected="True" Content="Normal"/>
+                                        <ComboBoxItem Content="Blinded"/>
+                                        <ComboBoxItem Content="Charmed"/>
+                                        <ComboBoxItem Content="Dead"/>
+                                        <ComboBoxItem Content="Deafened"/>
+                                        <ComboBoxItem Content="Frightened"/>
+                                        <ComboBoxItem Content="Grappled"/>
+                                        <ComboBoxItem Content="Incapacitated"/>
+                                        <ComboBoxItem Content="Invisible"/>
+                                        <ComboBoxItem Content="Paralyzed"/>
+                                        <ComboBoxItem Content="Petrified"/>
+                                        <ComboBoxItem Content="Poisoned"/>
+                                        <ComboBoxItem Content="Prone"/>
+                                        <ComboBoxItem Content="Restrained"/>
+                                        <ComboBoxItem Content="Stunned"/>
+                                        <ComboBoxItem Content="Unconcious"/>
+                                    </ComboBox>
+                                    <ComboBox x:Name="Condition4b" Visibility="Hidden" Text="Normal" Width="80" HorizontalAlignment="Left" Margin="5,0">
+                                        <ComboBoxItem IsSelected="True" Content=""/>
+                                        <ComboBoxItem Content="Blinded"/>
+                                        <ComboBoxItem Content="Charmed"/>
+                                        <ComboBoxItem Content="Dead"/>
+                                        <ComboBoxItem Content="Deafened"/>
+                                        <ComboBoxItem Content="Frightened"/>
+                                        <ComboBoxItem Content="Grappled"/>
+                                        <ComboBoxItem Content="Incapacitated"/>
+                                        <ComboBoxItem Content="Invisible"/>
+                                        <ComboBoxItem Content="Paralyzed"/>
+                                        <ComboBoxItem Content="Petrified"/>
+                                        <ComboBoxItem Content="Poisoned"/>
+                                        <ComboBoxItem Content="Prone"/>
+                                        <ComboBoxItem Content="Restrained"/>
+                                        <ComboBoxItem Content="Stunned"/>
+                                        <ComboBoxItem Content="Unconcious"/>
+                                    </ComboBox>
+                                </StackPanel>
+
+                            </Grid>
+                        </StackPanel>
+                    </Border>
+
+                    <!-- Character 5 -->
+                    <Border x:Name="borderCharacter5" Visibility="Visible" BorderBrush="Blue" CornerRadius="5" BorderThickness="1" Margin="0,1">
+                        <StackPanel x:Name="spCharacter5" Height="60" Width="280">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="1*" />
+                                    <ColumnDefinition Width="7*" />
+                                    <ColumnDefinition Width="3*" />
+                                    <ColumnDefinition Width="4*" />
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="20" />
+                                    <RowDefinition Height="20" />
+                                    <RowDefinition Height="20" />
+                                </Grid.RowDefinitions>
+                                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="0" Grid.Column="0" Grid.RowSpan="3">
+                                    <TextBlock x:Name="txtInitiative5" FontWeight="Bold" FontSize="14" Background="#00000000" Text="5"/>
+                                </StackPanel>
+                                <TextBox x:Name="txtName5" Text="Opal" TextWrapping="Wrap" Width="130" HorizontalAlignment="Left" FontWeight="Bold" Grid.Column="1" Grid.Row="0" FontSize="12" BorderBrush="#00000000" Background="#00000000"/>
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Grid.Column="3" Grid.Row="0">
+                                    <Image x:Name="btnUp5" Source="/UpArrow.jpg" Width="18" Height="18" Margin="1,0" MouseDown="btnUp5_MouseDown" Cursor="Hand"/>
+                                    <Image x:Name="btnDown5" Source="/DownArrow.jpg" Width="18" Height="18" Margin="1,0" MouseDown="btnDown5_MouseDown" Cursor="Hand"/>
+                                    <Image x:Name="btnDelete5" Source="/Delete.jpg" Width="18" Height="18" Margin="1,0" MouseDown="btnDelete5_MouseDown" Cursor="Hand"/>
+                                </StackPanel>
+                                <CheckBox x:Name="Lock5" Content="Lock" HorizontalAlignment="Center" Grid.Column="2" Grid.Row="0" VerticalAlignment="Center" IsChecked="True" Click="Lock5_Clicked"/>
+                                <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3">
+                                    <StackPanel Orientation="Horizontal">
+                                        <!--Always Visible-->
+                                        <TextBlock VerticalAlignment="Center"><Run Text="Init:"/></TextBlock>
+                                        <TextBox  x:Name="txtInit5" Width="20" VerticalAlignment="Center" Margin="2,0" TextAlignment="Right" Text="0" PreviewTextInput="IsTextAllowed" GotKeyboardFocus="txtInit5_GotKeyboardFocus"/>
+                                    </StackPanel>
+                                    <StackPanel x:Name="spTracker5" Visibility="Visible" Orientation="Horizontal">
+                                        <TextBlock VerticalAlignment="Center" Margin="5,0"><Run Text="|"/></TextBlock>
+                                        <TextBlock x:Name="lblAC5" VerticalAlignment="Center" MouseDown="lblAC5_MouseDown"><Run Text="AC:"/></TextBlock>
+                                        <TextBox  x:Name="txtACLow5" ToolTip="Highest Miss" Width="20" VerticalAlignment="Center" Margin="2,0" TextAlignment="Right" Text="0" PreviewTextInput="IsTextAllowed" GotKeyboardFocus="txtACLow5_GotKeyboardFocus"/>
+                                        <TextBlock x:Name="txtDash5" VerticalAlignment="Center" ><Run Text="-"/></TextBlock>
+                                        <TextBox  x:Name="txtACHigh5" ToolTip="Lowest Hit" Width="20" VerticalAlignment="Center" Margin="2,0" TextAlignment="Right" Text="20" PreviewTextInput="IsTextAllowed" GotKeyboardFocus="txtACHigh5_GotKeyboardFocus"/>
+                                        <TextBlock VerticalAlignment="Center" Margin="5,0"><Run Text="|"/></TextBlock>
+                                        <TextBlock x:Name="lblHP5" VerticalAlignment="Center"><Run Text="HP:"/></TextBlock>
+                                        <TextBox x:Name="txtTotalDamage5" Width="30" VerticalAlignment="Center" Margin="2,0" TextAlignment="Right" Text="0" PreviewTextInput="IsTextAllowed" GotKeyboardFocus="txtTotalDamage5_GotKeyboardFocus"/>
+                                        <TextBlock VerticalAlignment="Center" FontFamily="Wingdings" Margin="2,0"><Run Text=""/></TextBlock>
+                                        <TextBox x:Name="txtAddDamageAmount5" Width="20" VerticalAlignment="Center" TextAlignment="Right" Text="" PreviewTextInput="IsTextAllowed" GotKeyboardFocus="txtAddDamageAmount5_GotKeyboardFocus" />
+                                        <Button x:Name="btnAddDamage5" Margin="5,0,3,0" Height="15" Width="15" Content="+" Click="btnAddDamage5_Click"/>
+                                        <Button x:Name="btnSubtractDamage5" Margin="3,0,5,0" Height="15" Width="15" Content="-" Click="btnSubtractDamage5_Click"/>
+                                    </StackPanel>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="3">
+                                    <TextBlock Text="Condition:" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                                    <ComboBox x:Name="Condition5a" Text="Normal" Width="80" HorizontalAlignment="Left" Margin="5,0" DropDownClosed="Condition5a_DropDownClosed">
+                                        <ComboBoxItem IsSelected="True" Content="Normal"/>
+                                        <ComboBoxItem Content="Blinded"/>
+                                        <ComboBoxItem Content="Charmed"/>
+                                        <ComboBoxItem Content="Dead"/>
+                                        <ComboBoxItem Content="Deafened"/>
+                                        <ComboBoxItem Content="Frightened"/>
+                                        <ComboBoxItem Content="Grappled"/>
+                                        <ComboBoxItem Content="Incapacitated"/>
+                                        <ComboBoxItem Content="Invisible"/>
+                                        <ComboBoxItem Content="Paralyzed"/>
+                                        <ComboBoxItem Content="Petrified"/>
+                                        <ComboBoxItem Content="Poisoned"/>
+                                        <ComboBoxItem Content="Prone"/>
+                                        <ComboBoxItem Content="Restrained"/>
+                                        <ComboBoxItem Content="Stunned"/>
+                                        <ComboBoxItem Content="Unconcious"/>
+                                    </ComboBox>
+                                    <ComboBox x:Name="Condition5b" Visibility="Hidden" Text="Normal" Width="80" HorizontalAlignment="Left" Margin="5,0">
+                                        <ComboBoxItem IsSelected="True" Content=""/>
+                                        <ComboBoxItem Content="Blinded"/>
+                                        <ComboBoxItem Content="Charmed"/>
+                                        <ComboBoxItem Content="Dead"/>
+                                        <ComboBoxItem Content="Deafened"/>
+                                        <ComboBoxItem Content="Frightened"/>
+                                        <ComboBoxItem Content="Grappled"/>
+                                        <ComboBoxItem Content="Incapacitated"/>
+                                        <ComboBoxItem Content="Invisible"/>
+                                        <ComboBoxItem Content="Paralyzed"/>
+                                        <ComboBoxItem Content="Petrified"/>
+                                        <ComboBoxItem Content="Poisoned"/>
+                                        <ComboBoxItem Content="Prone"/>
+                                        <ComboBoxItem Content="Restrained"/>
+                                        <ComboBoxItem Content="Stunned"/>
+                                        <ComboBoxItem Content="Unconcious"/>
+                                    </ComboBox>
+                                </StackPanel>
+                            </Grid>
+                        </StackPanel>
+                    </Border>
+
+                    <!-- Character 6 -->
+                    <Border x:Name="borderCharacter6" Visibility="Visible" BorderBrush="Blue" CornerRadius="5" BorderThickness="1" Margin="0,1">
+                        <StackPanel x:Name="spCharacter6" Height="60" Width="280">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="1*" />
+                                    <ColumnDefinition Width="7*" />
+                                    <ColumnDefinition Width="3*" />
+                                    <ColumnDefinition Width="4*" />
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="20" />
+                                    <RowDefinition Height="20" />
+                                    <RowDefinition Height="20" />
+                                </Grid.RowDefinitions>
+                                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="0" Grid.Column="0" Grid.RowSpan="3">
+                                    <TextBlock x:Name="txtInitiative6" FontWeight="Bold" FontSize="14" Background="#00000000" Text="6"/>
+                                </StackPanel>
+                                <TextBox x:Name="txtName6" Text="Theris" TextWrapping="Wrap" Width="130" HorizontalAlignment="Left" FontWeight="Bold" Grid.Column="1" Grid.Row="0" FontSize="12" BorderBrush="#00000000" Background="#00000000"/>
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Grid.Column="3" Grid.Row="0">
+                                    <Image x:Name="btnUp6" Source="/UpArrow.jpg" Width="18" Height="18" Margin="1,0" MouseDown="btnUp6_MouseDown" Cursor="Hand"/>
+                                    <Image x:Name="btnDown6" Source="/DownArrow.jpg" Width="18" Height="18" Margin="1,0" MouseDown="btnDown6_MouseDown" Cursor="Hand"/>
+                                    <Image x:Name="btnDelete6" Source="/Delete.jpg" Width="18" Height="18" Margin="1,0" MouseDown="btnDelete6_MouseDown" Cursor="Hand"/>
+                                </StackPanel>
+                                <CheckBox x:Name="Lock6" Content="Lock" HorizontalAlignment="Center" Grid.Column="2" Grid.Row="0" VerticalAlignment="Center" IsChecked="True" Click="Lock6_Clicked"/>
+                                <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3">
+                                    <StackPanel Orientation="Horizontal">
+                                        <!--Always Visible-->
+                                        <TextBlock VerticalAlignment="Center"><Run Text="Init:"/></TextBlock>
+                                        <TextBox  x:Name="txtInit6" Width="20" VerticalAlignment="Center" Margin="2,0" TextAlignment="Right" Text="0" PreviewTextInput="IsTextAllowed" GotKeyboardFocus="txtInit6_GotKeyboardFocus"/>
+                                    </StackPanel>
+                                    <StackPanel x:Name="spTracker6" Visibility="Visible" Orientation="Horizontal">
+                                        <TextBlock VerticalAlignment="Center" Margin="5,0"><Run Text="|"/></TextBlock>
+                                        <TextBlock x:Name="lblAC6" VerticalAlignment="Center" MouseDown="lblAC6_MouseDown"><Run Text="AC:"/></TextBlock>
+                                        <TextBox  x:Name="txtACLow6" ToolTip="Highest Miss" Width="20" VerticalAlignment="Center" Margin="2,0" TextAlignment="Right" Text="0" PreviewTextInput="IsTextAllowed" GotKeyboardFocus="txtACLow6_GotKeyboardFocus"/>
+                                        <TextBlock x:Name="txtDash6" VerticalAlignment="Center" ><Run Text="-"/></TextBlock>
+                                        <TextBox  x:Name="txtACHigh6" ToolTip="Lowest Hit" Width="20" VerticalAlignment="Center" Margin="2,0" TextAlignment="Right" Text="20" PreviewTextInput="IsTextAllowed" GotKeyboardFocus="txtACHigh6_GotKeyboardFocus"/>
+                                        <TextBlock VerticalAlignment="Center" Margin="5,0"><Run Text="|"/></TextBlock>
+                                        <TextBlock x:Name="lblHP6" VerticalAlignment="Center"><Run Text="HP:"/></TextBlock>
+                                        <TextBox x:Name="txtTotalDamage6" Width="30" VerticalAlignment="Center" Margin="2,0" TextAlignment="Right" Text="0" PreviewTextInput="IsTextAllowed" GotKeyboardFocus="txtTotalDamage6_GotKeyboardFocus"/>
+                                        <TextBlock VerticalAlignment="Center" FontFamily="Wingdings" Margin="2,0"><Run Text=""/></TextBlock>
+                                        <TextBox x:Name="txtAddDamageAmount6" Width="20" VerticalAlignment="Center" TextAlignment="Right" Text="" PreviewTextInput="IsTextAllowed" GotKeyboardFocus="txtAddDamageAmount6_GotKeyboardFocus" />
+                                        <Button x:Name="btnAddDamage6" Margin="5,0,3,0" Height="15" Width="15" Content="+" Click="btnAddDamage6_Click"/>
+                                        <Button x:Name="btnSubtractDamage6" Margin="3,0,5,0" Height="15" Width="15" Content="-" Click="btnSubtractDamage6_Click"/>
+                                    </StackPanel>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="3">
+                                    <TextBlock Text="Condition:" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                                    <ComboBox x:Name="Condition6a" Text="Normal" Width="80" HorizontalAlignment="Left" Margin="5,0" DropDownClosed="Condition6a_DropDownClosed">
+                                        <ComboBoxItem IsSelected="True" Content="Normal"/>
+                                        <ComboBoxItem Content="Blinded"/>
+                                        <ComboBoxItem Content="Charmed"/>
+                                        <ComboBoxItem Content="Dead"/>
+                                        <ComboBoxItem Content="Deafened"/>
+                                        <ComboBoxItem Content="Frightened"/>
+                                        <ComboBoxItem Content="Grappled"/>
+                                        <ComboBoxItem Content="Incapacitated"/>
+                                        <ComboBoxItem Content="Invisible"/>
+                                        <ComboBoxItem Content="Paralyzed"/>
+                                        <ComboBoxItem Content="Petrified"/>
+                                        <ComboBoxItem Content="Poisoned"/>
+                                        <ComboBoxItem Content="Prone"/>
+                                        <ComboBoxItem Content="Restrained"/>
+                                        <ComboBoxItem Content="Stunned"/>
+                                        <ComboBoxItem Content="Unconcious"/>
+                                    </ComboBox>
+                                    <ComboBox x:Name="Condition6b" Visibility="Hidden" Text="Normal" Width="80" HorizontalAlignment="Left" Margin="5,0">
+                                        <ComboBoxItem IsSelected="True" Content=""/>
+                                        <ComboBoxItem Content="Blinded"/>
+                                        <ComboBoxItem Content="Charmed"/>
+                                        <ComboBoxItem Content="Dead"/>
+                                        <ComboBoxItem Content="Deafened"/>
+                                        <ComboBoxItem Content="Frightened"/>
+                                        <ComboBoxItem Content="Grappled"/>
+                                        <ComboBoxItem Content="Incapacitated"/>
+                                        <ComboBoxItem Content="Invisible"/>
+                                        <ComboBoxItem Content="Paralyzed"/>
+                                        <ComboBoxItem Content="Petrified"/>
+                                        <ComboBoxItem Content="Poisoned"/>
+                                        <ComboBoxItem Content="Prone"/>
+                                        <ComboBoxItem Content="Restrained"/>
+                                        <ComboBoxItem Content="Stunned"/>
+                                        <ComboBoxItem Content="Unconcious"/>
+                                    </ComboBox>
+                                </StackPanel>
+                            </Grid>
+                        </StackPanel>
+                    </Border>
+
+                    <!-- Character 7 -->
+                    <Border x:Name="borderCharacter7" Visibility="Visible" BorderBrush="Blue" CornerRadius="5" BorderThickness="1" Margin="0,1">
+                        <StackPanel x:Name="spCharacter7" Height="60" Width="280">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="1*" />
+                                    <ColumnDefinition Width="7*" />
+                                    <ColumnDefinition Width="3*" />
+                                    <ColumnDefinition Width="4*" />
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="20" />
+                                    <RowDefinition Height="20" />
+                                    <RowDefinition Height="20" />
+                                </Grid.RowDefinitions>
+                                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="0" Grid.Column="0" Grid.RowSpan="3">
+                                    <TextBlock x:Name="txtInitiative7" FontWeight="Bold" FontSize="14" Background="#00000000" Text="7"/>
+                                </StackPanel>
+                                <TextBox x:Name="txtName7" Text="Monster 3" TextWrapping="Wrap" Width="130" HorizontalAlignment="Left" FontWeight="Bold" Grid.Column="1" Grid.Row="0" FontSize="12" BorderBrush="#00000000" Background="#00000000"/>
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Grid.Column="3" Grid.Row="0">
+                                    <Image x:Name="btnUp7" Source="/UpArrow.jpg" Width="18" Height="18" Margin="1,0" MouseDown="btnUp7_MouseDown" Cursor="Hand"/>
+                                    <Image x:Name="btnDown7" Source="/DownArrow.jpg" Width="18" Height="18" Margin="1,0" MouseDown="btnDown7_MouseDown" Cursor="Hand"/>
+                                    <Image x:Name="btnDelete7" Source="/Delete.jpg" Width="18" Height="18" Margin="1,0" MouseDown="btnDelete7_MouseDown" Cursor="Hand"/>
+                                </StackPanel>
+                                <CheckBox x:Name="Lock7" Content="Lock" HorizontalAlignment="Center" Grid.Column="2" Grid.Row="0" VerticalAlignment="Center" IsChecked="False" Click="Lock7_Clicked"/>
+                                <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3">
+                                    <StackPanel Orientation="Horizontal">
+                                        <!--Always Visible-->
+                                        <TextBlock VerticalAlignment="Center"><Run Text="Init:"/></TextBlock>
+                                        <TextBox  x:Name="txtInit7" Width="20" VerticalAlignment="Center" Margin="2,0" TextAlignment="Right" Text="0" PreviewTextInput="IsTextAllowed" GotKeyboardFocus="txtInit7_GotKeyboardFocus"/>
+                                    </StackPanel>
+                                    <StackPanel x:Name="spTracker7" Visibility="Visible" Orientation="Horizontal">
+                                        <TextBlock VerticalAlignment="Center" Margin="5,0"><Run Text="|"/></TextBlock>
+                                        <TextBlock x:Name="lblAC7" VerticalAlignment="Center" MouseDown="lblAC7_MouseDown"><Run Text="AC:"/></TextBlock>
+                                        <TextBox  x:Name="txtACLow7" ToolTip="Highest Miss" Width="20" VerticalAlignment="Center" Margin="2,0" TextAlignment="Right" Text="0" PreviewTextInput="IsTextAllowed" GotKeyboardFocus="txtACLow7_GotKeyboardFocus"/>
+                                        <TextBlock x:Name="txtDash7" VerticalAlignment="Center" ><Run Text="-"/></TextBlock>
+                                        <TextBox  x:Name="txtACHigh7" ToolTip="Lowest Hit" Width="20" VerticalAlignment="Center" Margin="2,0" TextAlignment="Right" Text="20" PreviewTextInput="IsTextAllowed" GotKeyboardFocus="txtACHigh7_GotKeyboardFocus"/>
+                                        <TextBlock VerticalAlignment="Center" Margin="5,0"><Run Text="|"/></TextBlock>
+                                        <TextBlock x:Name="lblHP7" VerticalAlignment="Center"><Run Text="HP:"/></TextBlock>
+                                        <TextBox x:Name="txtTotalDamage7" Width="30" VerticalAlignment="Center" Margin="2,0" TextAlignment="Right" Text="0" PreviewTextInput="IsTextAllowed" GotKeyboardFocus="txtTotalDamage7_GotKeyboardFocus"/>
+                                        <TextBlock VerticalAlignment="Center" FontFamily="Wingdings" Margin="2,0"><Run Text=""/></TextBlock>
+                                        <TextBox x:Name="txtAddDamageAmount7" Width="20" VerticalAlignment="Center" TextAlignment="Right" Text="" PreviewTextInput="IsTextAllowed" GotKeyboardFocus="txtAddDamageAmount7_GotKeyboardFocus" />
+                                        <Button x:Name="btnAddDamage7" Margin="5,0,3,0" Height="15" Width="15" Content="+" Click="btnAddDamage7_Click"/>
+                                        <Button x:Name="btnSubtractDamage7" Margin="3,0,5,0" Height="15" Width="15" Content="-" Click="btnSubtractDamage7_Click"/>
+                                    </StackPanel>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="3">
+                                    <TextBlock Text="Condition:" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                                    <ComboBox x:Name="Condition7a" Text="Normal" Width="80" HorizontalAlignment="Left" Margin="5,0" DropDownClosed="Condition7a_DropDownClosed">
+                                        <ComboBoxItem IsSelected="True" Content="Normal"/>
+                                        <ComboBoxItem Content="Blinded"/>
+                                        <ComboBoxItem Content="Charmed"/>
+                                        <ComboBoxItem Content="Dead"/>
+                                        <ComboBoxItem Content="Deafened"/>
+                                        <ComboBoxItem Content="Frightened"/>
+                                        <ComboBoxItem Content="Grappled"/>
+                                        <ComboBoxItem Content="Incapacitated"/>
+                                        <ComboBoxItem Content="Invisible"/>
+                                        <ComboBoxItem Content="Paralyzed"/>
+                                        <ComboBoxItem Content="Petrified"/>
+                                        <ComboBoxItem Content="Poisoned"/>
+                                        <ComboBoxItem Content="Prone"/>
+                                        <ComboBoxItem Content="Restrained"/>
+                                        <ComboBoxItem Content="Stunned"/>
+                                        <ComboBoxItem Content="Unconcious"/>
+                                    </ComboBox>
+                                    <ComboBox x:Name="Condition7b" Visibility="Hidden" Text="Normal" Width="80" HorizontalAlignment="Left" Margin="5,0">
+                                        <ComboBoxItem IsSelected="True" Content=""/>
+                                        <ComboBoxItem Content="Blinded"/>
+                                        <ComboBoxItem Content="Charmed"/>
+                                        <ComboBoxItem Content="Dead"/>
+                                        <ComboBoxItem Content="Deafened"/>
+                                        <ComboBoxItem Content="Frightened"/>
+                                        <ComboBoxItem Content="Grappled"/>
+                                        <ComboBoxItem Content="Incapacitated"/>
+                                        <ComboBoxItem Content="Invisible"/>
+                                        <ComboBoxItem Content="Paralyzed"/>
+                                        <ComboBoxItem Content="Petrified"/>
+                                        <ComboBoxItem Content="Poisoned"/>
+                                        <ComboBoxItem Content="Prone"/>
+                                        <ComboBoxItem Content="Restrained"/>
+                                        <ComboBoxItem Content="Stunned"/>
+                                        <ComboBoxItem Content="Unconcious"/>
+                                    </ComboBox>
+                                </StackPanel>
+                            </Grid>
+                        </StackPanel>
+                    </Border>
+
+                    <!-- Character 8 -->
+                    <Border x:Name="borderCharacter8" Visibility="Visible" BorderBrush="Blue" CornerRadius="5" BorderThickness="1" Margin="0,1">
+                        <StackPanel x:Name="spCharacter8" Height="60" Width="280">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="1*" />
+                                    <ColumnDefinition Width="7*" />
+                                    <ColumnDefinition Width="3*" />
+                                    <ColumnDefinition Width="4*" />
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="20" />
+                                    <RowDefinition Height="20" />
+                                    <RowDefinition Height="20" />
+                                </Grid.RowDefinitions>
+                                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="0" Grid.Column="0" Grid.RowSpan="3">
+                                    <TextBlock x:Name="txtInitiative8" FontWeight="Bold" FontSize="14" Background="#00000000" Text="8"/>
+                                </StackPanel>
+                                <TextBox x:Name="txtName8" Text="Monster 4" TextWrapping="Wrap" Width="130" HorizontalAlignment="Left" FontWeight="Bold" Grid.Column="1" Grid.Row="0" FontSize="12" BorderBrush="#00000000" Background="#00000000"/>
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Grid.Column="3" Grid.Row="0">
+                                    <Image x:Name="btnUp8" Source="/UpArrow.jpg" Width="18" Height="18" Margin="1,0" MouseDown="btnUp8_MouseDown" Cursor="Hand"/>
+                                    <Image x:Name="btnDown8" Source="/DownArrow.jpg" Width="18" Height="18" Margin="1,0" MouseDown="btnDown8_MouseDown" Cursor="Hand"/>
+                                    <Image x:Name="btnDelete8" Source="/Delete.jpg" Width="18" Height="18" Margin="1,0" MouseDown="btnDelete8_MouseDown" Cursor="Hand"/>
+                                </StackPanel>
+                                <CheckBox x:Name="Lock8" Content="Lock" HorizontalAlignment="Center" Grid.Column="2" Grid.Row="0" VerticalAlignment="Center" IsChecked="False" Click="Lock8_Clicked"/>
+                                <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3">
+                                    <StackPanel Orientation="Horizontal">
+                                        <!--Always Visible-->
+                                        <TextBlock VerticalAlignment="Center"><Run Text="Init:"/></TextBlock>
+                                        <TextBox  x:Name="txtInit8" Width="20" VerticalAlignment="Center" Margin="2,0" TextAlignment="Right" Text="0" PreviewTextInput="IsTextAllowed" GotKeyboardFocus="txtInit8_GotKeyboardFocus"/>
+                                    </StackPanel>
+                                    <StackPanel x:Name="spTracker8" Visibility="Visible" Orientation="Horizontal">
+                                        <TextBlock VerticalAlignment="Center" Margin="5,0"><Run Text="|"/></TextBlock>
+                                        <TextBlock x:Name="lblAC8" VerticalAlignment="Center" MouseDown="lblAC8_MouseDown"><Run Text="AC:"/></TextBlock>
+                                        <TextBox  x:Name="txtACLow8" ToolTip="Highest Miss" Width="20" VerticalAlignment="Center" Margin="2,0" TextAlignment="Right" Text="0" PreviewTextInput="IsTextAllowed" GotKeyboardFocus="txtACLow8_GotKeyboardFocus"/>
+                                        <TextBlock x:Name="txtDash8" VerticalAlignment="Center" ><Run Text="-"/></TextBlock>
+                                        <TextBox  x:Name="txtACHigh8" ToolTip="Lowest Hit" Width="20" VerticalAlignment="Center" Margin="2,0" TextAlignment="Right" Text="20" PreviewTextInput="IsTextAllowed" GotKeyboardFocus="txtACHigh8_GotKeyboardFocus"/>
+                                        <TextBlock VerticalAlignment="Center" Margin="5,0"><Run Text="|"/></TextBlock>
+                                        <TextBlock x:Name="lblHP8" VerticalAlignment="Center"><Run Text="HP:"/></TextBlock>
+                                        <TextBox x:Name="txtTotalDamage8" Width="30" VerticalAlignment="Center" Margin="2,0" TextAlignment="Right" Text="0" PreviewTextInput="IsTextAllowed" GotKeyboardFocus="txtTotalDamage8_GotKeyboardFocus"/>
+                                        <TextBlock VerticalAlignment="Center" FontFamily="Wingdings" Margin="2,0"><Run Text=""/></TextBlock>
+                                        <TextBox x:Name="txtAddDamageAmount8" Width="20" VerticalAlignment="Center" TextAlignment="Right" Text="" PreviewTextInput="IsTextAllowed" GotKeyboardFocus="txtAddDamageAmount8_GotKeyboardFocus" />
+                                        <Button x:Name="btnAddDamage8" Margin="5,0,3,0" Height="15" Width="15" Content="+" Click="btnAddDamage8_Click"/>
+                                        <Button x:Name="btnSubtractDamage8" Margin="3,0,5,0" Height="15" Width="15" Content="-" Click="btnSubtractDamage8_Click"/>
+                                    </StackPanel>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="3">
+                                    <TextBlock Text="Condition:" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                                    <ComboBox x:Name="Condition8a" Text="Normal" Width="80" HorizontalAlignment="Left" Margin="5,0" DropDownClosed="Condition8a_DropDownClosed">
+                                        <ComboBoxItem IsSelected="True" Content="Normal"/>
+                                        <ComboBoxItem Content="Blinded"/>
+                                        <ComboBoxItem Content="Charmed"/>
+                                        <ComboBoxItem Content="Dead"/>
+                                        <ComboBoxItem Content="Deafened"/>
+                                        <ComboBoxItem Content="Frightened"/>
+                                        <ComboBoxItem Content="Grappled"/>
+                                        <ComboBoxItem Content="Incapacitated"/>
+                                        <ComboBoxItem Content="Invisible"/>
+                                        <ComboBoxItem Content="Paralyzed"/>
+                                        <ComboBoxItem Content="Petrified"/>
+                                        <ComboBoxItem Content="Poisoned"/>
+                                        <ComboBoxItem Content="Prone"/>
+                                        <ComboBoxItem Content="Restrained"/>
+                                        <ComboBoxItem Content="Stunned"/>
+                                        <ComboBoxItem Content="Unconcious"/>
+                                    </ComboBox>
+                                    <ComboBox x:Name="Condition8b" Visibility="Hidden" Text="Normal" Width="80" HorizontalAlignment="Left" Margin="5,0">
+                                        <ComboBoxItem IsSelected="True" Content=""/>
+                                        <ComboBoxItem Content="Blinded"/>
+                                        <ComboBoxItem Content="Charmed"/>
+                                        <ComboBoxItem Content="Dead"/>
+                                        <ComboBoxItem Content="Deafened"/>
+                                        <ComboBoxItem Content="Frightened"/>
+                                        <ComboBoxItem Content="Grappled"/>
+                                        <ComboBoxItem Content="Incapacitated"/>
+                                        <ComboBoxItem Content="Invisible"/>
+                                        <ComboBoxItem Content="Paralyzed"/>
+                                        <ComboBoxItem Content="Petrified"/>
+                                        <ComboBoxItem Content="Poisoned"/>
+                                        <ComboBoxItem Content="Prone"/>
+                                        <ComboBoxItem Content="Restrained"/>
+                                        <ComboBoxItem Content="Stunned"/>
+                                        <ComboBoxItem Content="Unconcious"/>
+                                    </ComboBox>
+                                </StackPanel>
+                            </Grid>
+                        </StackPanel>
+                    </Border>
+
+                    <!-- Character 9 -->
+                    <Border x:Name="borderCharacter9" Visibility="Visible" BorderBrush="Blue" CornerRadius="5" BorderThickness="1" Margin="0,1">
+                        <StackPanel x:Name="spCharacter9" Height="60" Width="280">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="1*" />
+                                    <ColumnDefinition Width="7*" />
+                                    <ColumnDefinition Width="3*" />
+                                    <ColumnDefinition Width="4*" />
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="20" />
+                                    <RowDefinition Height="20" />
+                                    <RowDefinition Height="20" />
+                                </Grid.RowDefinitions>
+                                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="0" Grid.Column="0" Grid.RowSpan="3">
+                                    <TextBlock x:Name="txtInitiative9" FontWeight="Bold" FontSize="14" Background="#00000000" Text="9"/>
+                                </StackPanel>
+                                <TextBox x:Name="txtName9" Text="Monster 5" TextWrapping="Wrap" Width="130" HorizontalAlignment="Left" FontWeight="Bold" Grid.Column="1" Grid.Row="0" FontSize="12" BorderBrush="#00000000" Background="#00000000"/>
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Grid.Column="3" Grid.Row="0">
+                                    <Image x:Name="btnUp9" Source="/UpArrow.jpg" Width="18" Height="18" Margin="1,0" MouseDown="btnUp9_MouseDown" Cursor="Hand"/>
+                                    <Image x:Name="btnDown9" Source="/DownArrow.jpg" Width="18" Height="18" Margin="1,0" MouseDown="btnDown9_MouseDown" Cursor="Hand"/>
+                                    <Image x:Name="btnDelete9" Source="/Delete.jpg" Width="18" Height="18" Margin="1,0" MouseDown="btnDelete9_MouseDown" Cursor="Hand"/>
+                                </StackPanel>
+                                <CheckBox x:Name="Lock9" Content="Lock" HorizontalAlignment="Center" Grid.Column="2" Grid.Row="0" VerticalAlignment="Center" IsChecked="False" Click="Lock9_Clicked"/>
+                                <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3">
+                                    <StackPanel Orientation="Horizontal">
+                                        <!--Always Visible-->
+                                        <TextBlock VerticalAlignment="Center"><Run Text="Init:"/></TextBlock>
+                                        <TextBox  x:Name="txtInit9" Width="20" VerticalAlignment="Center" Margin="2,0" TextAlignment="Right" Text="0" PreviewTextInput="IsTextAllowed" GotKeyboardFocus="txtInit9_GotKeyboardFocus"/>
+                                    </StackPanel>
+                                    <StackPanel x:Name="spTracker9" Visibility="Visible" Orientation="Horizontal">
+                                        <TextBlock VerticalAlignment="Center" Margin="5,0"><Run Text="|"/></TextBlock>
+                                        <TextBlock x:Name="lblAC9" VerticalAlignment="Center" MouseDown="lblAC9_MouseDown"><Run Text="AC:"/></TextBlock>
+                                        <TextBox  x:Name="txtACLow9" ToolTip="Highest Miss" Width="20" VerticalAlignment="Center" Margin="2,0" TextAlignment="Right" Text="0" PreviewTextInput="IsTextAllowed" GotKeyboardFocus="txtACLow9_GotKeyboardFocus"/>
+                                        <TextBlock x:Name="txtDash9" VerticalAlignment="Center" ><Run Text="-"/></TextBlock>
+                                        <TextBox  x:Name="txtACHigh9" ToolTip="Lowest Hit" Width="20" VerticalAlignment="Center" Margin="2,0" TextAlignment="Right" Text="20" PreviewTextInput="IsTextAllowed" GotKeyboardFocus="txtACHigh9_GotKeyboardFocus"/>
+                                        <TextBlock VerticalAlignment="Center" Margin="5,0"><Run Text="|"/></TextBlock>
+                                        <TextBlock x:Name="lblHP9" VerticalAlignment="Center"><Run Text="HP:"/></TextBlock>
+                                        <TextBox x:Name="txtTotalDamage9" Width="30" VerticalAlignment="Center" Margin="2,0" TextAlignment="Right" Text="0" PreviewTextInput="IsTextAllowed" GotKeyboardFocus="txtTotalDamage9_GotKeyboardFocus"/>
+                                        <TextBlock VerticalAlignment="Center" FontFamily="Wingdings" Margin="2,0"><Run Text=""/></TextBlock>
+                                        <TextBox x:Name="txtAddDamageAmount9" Width="20" VerticalAlignment="Center" TextAlignment="Right" Text="" PreviewTextInput="IsTextAllowed" GotKeyboardFocus="txtAddDamageAmount9_GotKeyboardFocus" />
+                                        <Button x:Name="btnAddDamage9" Margin="5,0,3,0" Height="15" Width="15" Content="+" Click="btnAddDamage9_Click"/>
+                                        <Button x:Name="btnSubtractDamage9" Margin="3,0,5,0" Height="15" Width="15" Content="-" Click="btnSubtractDamage9_Click"/>
+                                    </StackPanel>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="3">
+                                    <TextBlock Text="Condition:" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                                    <ComboBox x:Name="Condition9a" Text="Normal" Width="80" HorizontalAlignment="Left" Margin="5,0" DropDownClosed="Condition9a_DropDownClosed_1">
+                                        <ComboBoxItem IsSelected="True" Content="Normal"/>
+                                        <ComboBoxItem Content="Blinded"/>
+                                        <ComboBoxItem Content="Charmed"/>
+                                        <ComboBoxItem Content="Dead"/>
+                                        <ComboBoxItem Content="Deafened"/>
+                                        <ComboBoxItem Content="Frightened"/>
+                                        <ComboBoxItem Content="Grappled"/>
+                                        <ComboBoxItem Content="Incapacitated"/>
+                                        <ComboBoxItem Content="Invisible"/>
+                                        <ComboBoxItem Content="Paralyzed"/>
+                                        <ComboBoxItem Content="Petrified"/>
+                                        <ComboBoxItem Content="Poisoned"/>
+                                        <ComboBoxItem Content="Prone"/>
+                                        <ComboBoxItem Content="Restrained"/>
+                                        <ComboBoxItem Content="Stunned"/>
+                                        <ComboBoxItem Content="Unconcious"/>
+                                    </ComboBox>
+                                    <ComboBox x:Name="Condition9b" Visibility="Hidden" Text="Normal" Width="80" HorizontalAlignment="Left" Margin="5,0">
+                                        <ComboBoxItem IsSelected="True" Content=""/>
+                                        <ComboBoxItem Content="Blinded"/>
+                                        <ComboBoxItem Content="Charmed"/>
+                                        <ComboBoxItem Content="Dead"/>
+                                        <ComboBoxItem Content="Deafened"/>
+                                        <ComboBoxItem Content="Frightened"/>
+                                        <ComboBoxItem Content="Grappled"/>
+                                        <ComboBoxItem Content="Incapacitated"/>
+                                        <ComboBoxItem Content="Invisible"/>
+                                        <ComboBoxItem Content="Paralyzed"/>
+                                        <ComboBoxItem Content="Petrified"/>
+                                        <ComboBoxItem Content="Poisoned"/>
+                                        <ComboBoxItem Content="Prone"/>
+                                        <ComboBoxItem Content="Restrained"/>
+                                        <ComboBoxItem Content="Stunned"/>
+                                        <ComboBoxItem Content="Unconcious"/>
+                                    </ComboBox>
+                                </StackPanel>
+                            </Grid>
+                        </StackPanel>
+                    </Border>
+
+                    <!-- Character 10 -->
+                    <Border x:Name="borderCharacter10" Visibility="Visible" BorderBrush="Blue" CornerRadius="5" BorderThickness="1" Margin="0,1">
+                        <StackPanel x:Name="spCharacter10" Height="60" Width="280">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="1*" />
+                                    <ColumnDefinition Width="7*" />
+                                    <ColumnDefinition Width="3*" />
+                                    <ColumnDefinition Width="4*" />
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="20" />
+                                    <RowDefinition Height="20" />
+                                    <RowDefinition Height="20" />
+                                </Grid.RowDefinitions>
+                                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="0" Grid.Column="0" Grid.RowSpan="3">
+                                    <TextBlock x:Name="txtInitiative10" FontWeight="Bold" FontSize="14" Background="#00000000" Text="10"/>
+                                </StackPanel>
+                                <TextBox x:Name="txtName10" Text="Monster 6" TextWrapping="Wrap" Width="130" HorizontalAlignment="Left" FontWeight="Bold" Grid.Column="1" Grid.Row="0" FontSize="12" BorderBrush="#00000000" Background="#00000000"/>
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Grid.Column="3" Grid.Row="0">
+                                    <Image x:Name="btnUp10" Source="/UpArrow.jpg" Width="18" Height="18" Margin="1,0" MouseDown="btnUp10_MouseDown" Cursor="Hand"/>
+                                    <Image x:Name="btnDown10" Source="/DownArrow.jpg" Width="18" Height="18" Margin="1,0" MouseDown="btnDown10_MouseDown" Cursor="Hand"/>
+                                    <Image x:Name="btnDelete10" Source="/Delete.jpg" Width="18" Height="18" Margin="1,0" MouseDown="btnDelete10_MouseDown" Cursor="Hand"/>
+                                </StackPanel>
+                                <CheckBox x:Name="Lock10" Content="Lock" HorizontalAlignment="Center" Grid.Column="2" Grid.Row="0" VerticalAlignment="Center" IsChecked="False" Click="Lock10_Clicked"/>
+                                <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3">
+                                    <StackPanel Orientation="Horizontal">
+                                        <!--Always Visible-->
+                                        <TextBlock VerticalAlignment="Center"><Run Text="Init:"/></TextBlock>
+                                        <TextBox  x:Name="txtInit10" Width="20" VerticalAlignment="Center" Margin="2,0" TextAlignment="Right" Text="0" PreviewTextInput="IsTextAllowed" GotKeyboardFocus="txtInit10_GotKeyboardFocus"/>
+                                    </StackPanel>
+                                    <StackPanel x:Name="spTracker10" Visibility="Visible" Orientation="Horizontal">
+                                        <TextBlock VerticalAlignment="Center" Margin="5,0"><Run Text="|"/></TextBlock>
+                                        <TextBlock x:Name="lblAC10" VerticalAlignment="Center" MouseDown="lblAC10_MouseDown"><Run Text="AC:"/></TextBlock>
+                                        <TextBox  x:Name="txtACLow10" ToolTip="Highest Miss" Width="20" VerticalAlignment="Center" Margin="2,0" TextAlignment="Right" Text="0" PreviewTextInput="IsTextAllowed" GotKeyboardFocus="txtACLow10_GotKeyboardFocus"/>
+                                        <TextBlock x:Name="txtDash10" VerticalAlignment="Center" ><Run Text="-"/></TextBlock>
+                                        <TextBox  x:Name="txtACHigh10" ToolTip="Lowest Hit" Width="20" VerticalAlignment="Center" Margin="2,0" TextAlignment="Right" Text="20" PreviewTextInput="IsTextAllowed" GotKeyboardFocus="txtACHigh10_GotKeyboardFocus"/>
+                                        <TextBlock VerticalAlignment="Center" Margin="5,0"><Run Text="|"/></TextBlock>
+                                        <TextBlock x:Name="lblHP10" VerticalAlignment="Center"><Run Text="HP:"/></TextBlock>
+                                        <TextBox x:Name="txtTotalDamage10" Width="30" VerticalAlignment="Center" Margin="2,0" TextAlignment="Right" Text="0" PreviewTextInput="IsTextAllowed" GotKeyboardFocus="txtTotalDamage10_GotKeyboardFocus"/>
+                                        <TextBlock VerticalAlignment="Center" FontFamily="Wingdings" Margin="2,0"><Run Text=""/></TextBlock>
+                                        <TextBox x:Name="txtAddDamageAmount10" Width="20" VerticalAlignment="Center" TextAlignment="Right" Text="" PreviewTextInput="IsTextAllowed" GotKeyboardFocus="txtAddDamageAmount10_GotKeyboardFocus" />
+                                        <Button x:Name="btnAddDamage10" Margin="5,0,3,0" Height="15" Width="15" Content="+" Click="btnAddDamage10_Click"/>
+                                        <Button x:Name="btnSubtractDamage10" Margin="3,0,5,0" Height="15" Width="15" Content="-" Click="btnSubtractDamage10_Click"/>
+                                    </StackPanel>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="3">
+                                    <TextBlock Text="Condition:" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                                    <ComboBox x:Name="Condition10a" Text="Normal" Width="80" HorizontalAlignment="Left" Margin="5,0" DropDownClosed="Condition10a_DropDownClosed_1">
+                                        <ComboBoxItem IsSelected="True" Content="Normal"/>
+                                        <ComboBoxItem Content="Blinded"/>
+                                        <ComboBoxItem Content="Charmed"/>
+                                        <ComboBoxItem Content="Dead"/>
+                                        <ComboBoxItem Content="Deafened"/>
+                                        <ComboBoxItem Content="Frightened"/>
+                                        <ComboBoxItem Content="Grappled"/>
+                                        <ComboBoxItem Content="Incapacitated"/>
+                                        <ComboBoxItem Content="Invisible"/>
+                                        <ComboBoxItem Content="Paralyzed"/>
+                                        <ComboBoxItem Content="Petrified"/>
+                                        <ComboBoxItem Content="Poisoned"/>
+                                        <ComboBoxItem Content="Prone"/>
+                                        <ComboBoxItem Content="Restrained"/>
+                                        <ComboBoxItem Content="Stunned"/>
+                                        <ComboBoxItem Content="Unconcious"/>
+                                    </ComboBox>
+                                    <ComboBox x:Name="Condition10b" Visibility="Hidden" Text="Normal" Width="80" HorizontalAlignment="Left" Margin="5,0">
+                                        <ComboBoxItem IsSelected="True" Content=""/>
+                                        <ComboBoxItem Content="Blinded"/>
+                                        <ComboBoxItem Content="Charmed"/>
+                                        <ComboBoxItem Content="Dead"/>
+                                        <ComboBoxItem Content="Deafened"/>
+                                        <ComboBoxItem Content="Frightened"/>
+                                        <ComboBoxItem Content="Grappled"/>
+                                        <ComboBoxItem Content="Incapacitated"/>
+                                        <ComboBoxItem Content="Invisible"/>
+                                        <ComboBoxItem Content="Paralyzed"/>
+                                        <ComboBoxItem Content="Petrified"/>
+                                        <ComboBoxItem Content="Poisoned"/>
+                                        <ComboBoxItem Content="Prone"/>
+                                        <ComboBoxItem Content="Restrained"/>
+                                        <ComboBoxItem Content="Stunned"/>
+                                        <ComboBoxItem Content="Unconcious"/>
+                                    </ComboBox>
+                                </StackPanel>
+                            </Grid>
+                        </StackPanel>
+                    </Border>
+
+                    <!-- Character 11 -->
+                    <Border x:Name="borderCharacter11" Visibility="Hidden" BorderBrush="Blue" CornerRadius="5" BorderThickness="1" Margin="0,1">
+                        <StackPanel x:Name="spCharacter11" Height="60" Width="280">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="1*" />
+                                    <ColumnDefinition Width="7*" />
+                                    <ColumnDefinition Width="3*" />
+                                    <ColumnDefinition Width="4*" />
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="20" />
+                                    <RowDefinition Height="20" />
+                                    <RowDefinition Height="20" />
+                                </Grid.RowDefinitions>
+                                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="0" Grid.Column="0" Grid.RowSpan="3">
+                                    <TextBlock x:Name="txtInitiative11" FontWeight="Bold" FontSize="14" Background="#00000000" Text="11"/>
+                                </StackPanel>
+                                <TextBox x:Name="txtName11" Text="Monster 7" TextWrapping="Wrap" Width="130" HorizontalAlignment="Left" FontWeight="Bold" Grid.Column="1" Grid.Row="0" FontSize="12" BorderBrush="#00000000" Background="#00000000"/>
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Grid.Column="3" Grid.Row="0">
+                                    <Image x:Name="btnUp11" Source="/UpArrow.jpg" Width="18" Height="18" Margin="1,0" MouseDown="btnUp11_MouseDown" Cursor="Hand"/>
+                                    <Image x:Name="btnDown11" Source="/DownArrow.jpg" Width="18" Height="18" Margin="1,0" MouseDown="btnDown11_MouseDown" Cursor="Hand"/>
+                                    <Image x:Name="btnDelete11" Source="/Delete.jpg" Width="18" Height="18" Margin="1,0" MouseDown="btnDelete11_MouseDown" Cursor="Hand"/>
+                                </StackPanel>
+                                <CheckBox x:Name="Lock11" Content="Lock" HorizontalAlignment="Center" Grid.Column="2" Grid.Row="0" VerticalAlignment="Center" IsChecked="False" Click="Lock11_Clicked"/>
+                                <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3">
+                                    <StackPanel Orientation="Horizontal">
+                                        <!--Always Visible-->
+                                        <TextBlock VerticalAlignment="Center"><Run Text="Init:"/></TextBlock>
+                                        <TextBox  x:Name="txtInit11" Width="20" VerticalAlignment="Center" Margin="2,0" TextAlignment="Right" Text="0" PreviewTextInput="IsTextAllowed" GotKeyboardFocus="txtInit11_GotKeyboardFocus"/>
+                                    </StackPanel>
+                                    <StackPanel x:Name="spTracker11" Visibility="Visible" Orientation="Horizontal">
+                                        <TextBlock VerticalAlignment="Center" Margin="5,0"><Run Text="|"/></TextBlock>
+                                        <TextBlock x:Name="lblAC11" VerticalAlignment="Center" MouseDown="lblAC11_MouseDown"><Run Text="AC:"/></TextBlock>
+                                        <TextBox  x:Name="txtACLow11" ToolTip="Highest Miss" Width="20" VerticalAlignment="Center" Margin="2,0" TextAlignment="Right" Text="0" PreviewTextInput="IsTextAllowed" GotKeyboardFocus="txtACLow11_GotKeyboardFocus"/>
+                                        <TextBlock x:Name="txtDash11" VerticalAlignment="Center" ><Run Text="-"/></TextBlock>
+                                        <TextBox  x:Name="txtACHigh11" ToolTip="Lowest Hit" Width="20" VerticalAlignment="Center" Margin="2,0" TextAlignment="Right" Text="20" PreviewTextInput="IsTextAllowed" GotKeyboardFocus="txtACHigh11_GotKeyboardFocus"/>
+                                        <TextBlock VerticalAlignment="Center" Margin="5,0"><Run Text="|"/></TextBlock>
+                                        <TextBlock x:Name="lblHP11" VerticalAlignment="Center"><Run Text="HP:"/></TextBlock>
+                                        <TextBox x:Name="txtTotalDamage11" Width="30" VerticalAlignment="Center" Margin="2,0" TextAlignment="Right" Text="0" PreviewTextInput="IsTextAllowed" GotKeyboardFocus="txtTotalDamage11_GotKeyboardFocus"/>
+                                        <TextBlock VerticalAlignment="Center" FontFamily="Wingdings" Margin="2,0"><Run Text=""/></TextBlock>
+                                        <TextBox x:Name="txtAddDamageAmount11" Width="20" VerticalAlignment="Center" TextAlignment="Right" Text="" PreviewTextInput="IsTextAllowed" GotKeyboardFocus="txtAddDamageAmount11_GotKeyboardFocus" />
+                                        <Button x:Name="btnAddDamage11" Margin="5,0,3,0" Height="15" Width="15" Content="+" Click="btnAddDamage11_Click"/>
+                                        <Button x:Name="btnSubtractDamage11" Margin="3,0,5,0" Height="15" Width="15" Content="-" Click="btnSubtractDamage11_Click"/>
+                                    </StackPanel>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="3">
+                                    <TextBlock Text="Condition:" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                                    <ComboBox x:Name="Condition11a" Text="Normal" Width="80" HorizontalAlignment="Left" Margin="5,0" DropDownClosed="Condition11a_DropDownClosed_1">
+                                        <ComboBoxItem IsSelected="True" Content="Normal"/>
+                                        <ComboBoxItem Content="Blinded"/>
+                                        <ComboBoxItem Content="Charmed"/>
+                                        <ComboBoxItem Content="Dead"/>
+                                        <ComboBoxItem Content="Deafened"/>
+                                        <ComboBoxItem Content="Frightened"/>
+                                        <ComboBoxItem Content="Grappled"/>
+                                        <ComboBoxItem Content="Incapacitated"/>
+                                        <ComboBoxItem Content="Invisible"/>
+                                        <ComboBoxItem Content="Paralyzed"/>
+                                        <ComboBoxItem Content="Petrified"/>
+                                        <ComboBoxItem Content="Poisoned"/>
+                                        <ComboBoxItem Content="Prone"/>
+                                        <ComboBoxItem Content="Restrained"/>
+                                        <ComboBoxItem Content="Stunned"/>
+                                        <ComboBoxItem Content="Unconcious"/>
+                                    </ComboBox>
+                                    <ComboBox x:Name="Condition11b" Visibility="Hidden" Text="Normal" Width="80" HorizontalAlignment="Left" Margin="5,0">
+                                        <ComboBoxItem IsSelected="True" Content=""/>
+                                        <ComboBoxItem Content="Blinded"/>
+                                        <ComboBoxItem Content="Charmed"/>
+                                        <ComboBoxItem Content="Dead"/>
+                                        <ComboBoxItem Content="Deafened"/>
+                                        <ComboBoxItem Content="Frightened"/>
+                                        <ComboBoxItem Content="Grappled"/>
+                                        <ComboBoxItem Content="Incapacitated"/>
+                                        <ComboBoxItem Content="Invisible"/>
+                                        <ComboBoxItem Content="Paralyzed"/>
+                                        <ComboBoxItem Content="Petrified"/>
+                                        <ComboBoxItem Content="Poisoned"/>
+                                        <ComboBoxItem Content="Prone"/>
+                                        <ComboBoxItem Content="Restrained"/>
+                                        <ComboBoxItem Content="Stunned"/>
+                                        <ComboBoxItem Content="Unconcious"/>
+                                    </ComboBox>
+                                </StackPanel>
+                            </Grid>
+                        </StackPanel>
+                    </Border>
+
+                    <!-- Character 12 -->
+                    <Border x:Name="borderCharacter12" Visibility="Hidden" BorderBrush="Blue" CornerRadius="5" BorderThickness="1" Margin="0,1">
+                        <StackPanel x:Name="spCharacter12" Height="60" Width="280">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="1*" />
+                                    <ColumnDefinition Width="7*" />
+                                    <ColumnDefinition Width="3*" />
+                                    <ColumnDefinition Width="4*" />
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="20" />
+                                    <RowDefinition Height="20" />
+                                    <RowDefinition Height="20" />
+                                </Grid.RowDefinitions>
+                                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="0" Grid.Column="0" Grid.RowSpan="3">
+                                    <TextBlock x:Name="txtInitiative12" FontWeight="Bold" FontSize="14" Background="#00000000" Text="12"/>
+                                </StackPanel>
+                                <TextBox x:Name="txtName12" Text="Monster 8" TextWrapping="Wrap" Width="130" HorizontalAlignment="Left" FontWeight="Bold" Grid.Column="1" Grid.Row="0" FontSize="12" BorderBrush="#00000000" Background="#00000000"/>
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Grid.Column="3" Grid.Row="0">
+                                    <Image x:Name="btnUp12" Source="/UpArrow.jpg" Width="18" Height="18" Margin="1,0" MouseDown="btnUp12_MouseDown" Cursor="Hand"/>
+                                    <Image x:Name="btnDown12" Source="/DownArrow.jpg" Width="18" Height="18" Margin="1,0" MouseDown="btnDown12_MouseDown" Cursor="Hand"/>
+                                    <Image x:Name="btnDelete12" Source="/Delete.jpg" Width="18" Height="18" Margin="1,0" MouseDown="btnDelete12_MouseDown" Cursor="Hand"/>
+                                </StackPanel>
+                                <CheckBox x:Name="Lock12" Content="Lock" HorizontalAlignment="Center" Grid.Column="2" Grid.Row="0" VerticalAlignment="Center" IsChecked="False" Click="Lock12_Clicked"/>
+                                <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3">
+                                    <StackPanel Orientation="Horizontal">
+                                        <!--Always Visible-->
+                                        <TextBlock VerticalAlignment="Center"><Run Text="Init:"/></TextBlock>
+                                        <TextBox  x:Name="txtInit12" Width="20" VerticalAlignment="Center" Margin="2,0" TextAlignment="Right" Text="0" PreviewTextInput="IsTextAllowed" GotKeyboardFocus="txtInit12_GotKeyboardFocus"/>
+                                    </StackPanel>
+                                    <StackPanel x:Name="spTracker12" Visibility="Visible" Orientation="Horizontal">
+                                        <TextBlock VerticalAlignment="Center" Margin="5,0"><Run Text="|"/></TextBlock>
+                                        <TextBlock x:Name="lblAC12" VerticalAlignment="Center" MouseDown="lblAC12_MouseDown"><Run Text="AC:"/></TextBlock>
+                                        <TextBox  x:Name="txtACLow12" ToolTip="Highest Miss" Width="20" VerticalAlignment="Center" Margin="2,0" TextAlignment="Right" Text="0" PreviewTextInput="IsTextAllowed" GotKeyboardFocus="txtACLow12_GotKeyboardFocus"/>
+                                        <TextBlock x:Name="txtDash12" VerticalAlignment="Center" ><Run Text="-"/></TextBlock>
+                                        <TextBox  x:Name="txtACHigh12" ToolTip="Lowest Hit" Width="20" VerticalAlignment="Center" Margin="2,0" TextAlignment="Right" Text="20" PreviewTextInput="IsTextAllowed" GotKeyboardFocus="txtACHigh12_GotKeyboardFocus"/>
+                                        <TextBlock VerticalAlignment="Center" Margin="5,0"><Run Text="|"/></TextBlock>
+                                        <TextBlock x:Name="lblHP12" VerticalAlignment="Center"><Run Text="HP:"/></TextBlock>
+                                        <TextBox x:Name="txtTotalDamage12" Width="30" VerticalAlignment="Center" Margin="2,0" TextAlignment="Right" Text="0" PreviewTextInput="IsTextAllowed" GotKeyboardFocus="txtTotalDamage12_GotKeyboardFocus"/>
+                                        <TextBlock VerticalAlignment="Center" FontFamily="Wingdings" Margin="2,0"><Run Text=""/></TextBlock>
+                                        <TextBox x:Name="txtAddDamageAmount12" Width="20" VerticalAlignment="Center" TextAlignment="Right" Text="" PreviewTextInput="IsTextAllowed" GotKeyboardFocus="txtAddDamageAmount12_GotKeyboardFocus" />
+                                        <Button x:Name="btnAddDamage12" Margin="5,0,3,0" Height="15" Width="15" Content="+" Click="btnAddDamage12_Click"/>
+                                        <Button x:Name="btnSubtractDamage12" Margin="3,0,5,0" Height="15" Width="15" Content="-" Click="btnSubtractDamage12_Click"/>
+                                    </StackPanel>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="3">
+                                    <TextBlock Text="Condition:" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                                    <ComboBox x:Name="Condition12a" Text="Normal" Width="80" HorizontalAlignment="Left" Margin="5,0" DropDownClosed="Condition12a_DropDownClosed_1">
+                                        <ComboBoxItem IsSelected="True" Content="Normal"/>
+                                        <ComboBoxItem Content="Blinded"/>
+                                        <ComboBoxItem Content="Charmed"/>
+                                        <ComboBoxItem Content="Dead"/>
+                                        <ComboBoxItem Content="Deafened"/>
+                                        <ComboBoxItem Content="Frightened"/>
+                                        <ComboBoxItem Content="Grappled"/>
+                                        <ComboBoxItem Content="Incapacitated"/>
+                                        <ComboBoxItem Content="Invisible"/>
+                                        <ComboBoxItem Content="Paralyzed"/>
+                                        <ComboBoxItem Content="Petrified"/>
+                                        <ComboBoxItem Content="Poisoned"/>
+                                        <ComboBoxItem Content="Prone"/>
+                                        <ComboBoxItem Content="Restrained"/>
+                                        <ComboBoxItem Content="Stunned"/>
+                                        <ComboBoxItem Content="Unconcious"/>
+                                    </ComboBox>
+                                    <ComboBox x:Name="Condition12b" Visibility="Hidden" Text="Normal" Width="80" HorizontalAlignment="Left" Margin="5,0">
+                                        <ComboBoxItem IsSelected="True" Content=""/>
+                                        <ComboBoxItem Content="Blinded"/>
+                                        <ComboBoxItem Content="Charmed"/>
+                                        <ComboBoxItem Content="Dead"/>
+                                        <ComboBoxItem Content="Deafened"/>
+                                        <ComboBoxItem Content="Frightened"/>
+                                        <ComboBoxItem Content="Grappled"/>
+                                        <ComboBoxItem Content="Incapacitated"/>
+                                        <ComboBoxItem Content="Invisible"/>
+                                        <ComboBoxItem Content="Paralyzed"/>
+                                        <ComboBoxItem Content="Petrified"/>
+                                        <ComboBoxItem Content="Poisoned"/>
+                                        <ComboBoxItem Content="Prone"/>
+                                        <ComboBoxItem Content="Restrained"/>
+                                        <ComboBoxItem Content="Stunned"/>
+                                        <ComboBoxItem Content="Unconcious"/>
+                                    </ComboBox>
+                                </StackPanel>
+                            </Grid>
+                        </StackPanel>
+                    </Border>
+
+                    <!-- Character 13 -->
+                    <Border x:Name="borderCharacter13" Visibility="Hidden" BorderBrush="Blue" CornerRadius="5" BorderThickness="1" Margin="0,1">
+                        <StackPanel x:Name="spCharacter13" Height="60" Width="280">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="1*" />
+                                    <ColumnDefinition Width="7*" />
+                                    <ColumnDefinition Width="3*" />
+                                    <ColumnDefinition Width="4*" />
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="20" />
+                                    <RowDefinition Height="20" />
+                                    <RowDefinition Height="20" />
+                                </Grid.RowDefinitions>
+                                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="0" Grid.Column="0" Grid.RowSpan="3">
+                                    <TextBlock x:Name="txtInitiative13" FontWeight="Bold" FontSize="14" Background="#00000000" Text="13"/>
+                                </StackPanel>
+                                <TextBox x:Name="txtName13" Text="Monster 9" TextWrapping="Wrap" Width="130" HorizontalAlignment="Left" FontWeight="Bold" Grid.Column="1" Grid.Row="0" FontSize="12" BorderBrush="#00000000" Background="#00000000"/>
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Grid.Column="3" Grid.Row="0">
+                                    <Image x:Name="btnUp13" Source="/UpArrow.jpg" Width="18" Height="18" Margin="1,0" MouseDown="btnUp13_MouseDown" Cursor="Hand"/>
+                                    <Image x:Name="btnDown13" Source="/DownArrow.jpg" Width="18" Height="18" Margin="1,0" MouseDown="btnDown13_MouseDown" Cursor="Hand"/>
+                                    <Image x:Name="btnDelete13" Source="/Delete.jpg" Width="18" Height="18" Margin="1,0" MouseDown="btnDelete13_MouseDown" Cursor="Hand"/>
+                                </StackPanel>
+                                <CheckBox x:Name="Lock13" Content="Lock" HorizontalAlignment="Center" Grid.Column="2" Grid.Row="0" VerticalAlignment="Center" IsChecked="False" Click="Lock13_Clicked"/>
+                                <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3">
+                                    <StackPanel Orientation="Horizontal">
+                                        <!--Always Visible-->
+                                        <TextBlock VerticalAlignment="Center"><Run Text="Init:"/></TextBlock>
+                                        <TextBox  x:Name="txtInit13" Width="20" VerticalAlignment="Center" Margin="2,0" TextAlignment="Right" Text="0" PreviewTextInput="IsTextAllowed" GotKeyboardFocus="txtInit13_GotKeyboardFocus"/>
+                                    </StackPanel>
+                                    <StackPanel x:Name="spTracker13" Visibility="Visible" Orientation="Horizontal">
+                                        <TextBlock VerticalAlignment="Center" Margin="5,0"><Run Text="|"/></TextBlock>
+                                        <TextBlock x:Name="lblAC13" VerticalAlignment="Center" MouseDown="lblAC13_MouseDown"><Run Text="AC:"/></TextBlock>
+                                        <TextBox  x:Name="txtACLow13" ToolTip="Highest Miss" Width="20" VerticalAlignment="Center" Margin="2,0" TextAlignment="Right" Text="0" PreviewTextInput="IsTextAllowed" GotKeyboardFocus="txtACLow13_GotKeyboardFocus"/>
+                                        <TextBlock x:Name="txtDash13" VerticalAlignment="Center" ><Run Text="-"/></TextBlock>
+                                        <TextBox  x:Name="txtACHigh13" ToolTip="Lowest Hit" Width="20" VerticalAlignment="Center" Margin="2,0" TextAlignment="Right" Text="20" PreviewTextInput="IsTextAllowed" GotKeyboardFocus="txtACHigh13_GotKeyboardFocus"/>
+                                        <TextBlock VerticalAlignment="Center" Margin="5,0"><Run Text="|"/></TextBlock>
+                                        <TextBlock x:Name="lblHP13" VerticalAlignment="Center"><Run Text="HP:"/></TextBlock>
+                                        <TextBox x:Name="txtTotalDamage13" Width="30" VerticalAlignment="Center" Margin="2,0" TextAlignment="Right" Text="0" PreviewTextInput="IsTextAllowed" GotKeyboardFocus="txtTotalDamage13_GotKeyboardFocus"/>
+                                        <TextBlock VerticalAlignment="Center" FontFamily="Wingdings" Margin="2,0"><Run Text=""/></TextBlock>
+                                        <TextBox x:Name="txtAddDamageAmount13" Width="20" VerticalAlignment="Center" TextAlignment="Right" Text="" PreviewTextInput="IsTextAllowed" GotKeyboardFocus="txtAddDamageAmount13_GotKeyboardFocus" />
+                                        <Button x:Name="btnAddDamage13" Margin="5,0,3,0" Height="15" Width="15" Content="+" Click="btnAddDamage13_Click"/>
+                                        <Button x:Name="btnSubtractDamage13" Margin="3,0,5,0" Height="15" Width="15" Content="-" Click="btnSubtractDamage13_Click"/>
+                                    </StackPanel>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="3">
+                                    <TextBlock Text="Condition:" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                                    <ComboBox x:Name="Condition13a" Text="Normal" Width="80" HorizontalAlignment="Left" Margin="5,0" DropDownClosed="Condition13a_DropDownClosed_1">
+                                        <ComboBoxItem IsSelected="True" Content="Normal"/>
+                                        <ComboBoxItem Content="Blinded"/>
+                                        <ComboBoxItem Content="Charmed"/>
+                                        <ComboBoxItem Content="Dead"/>
+                                        <ComboBoxItem Content="Deafened"/>
+                                        <ComboBoxItem Content="Frightened"/>
+                                        <ComboBoxItem Content="Grappled"/>
+                                        <ComboBoxItem Content="Incapacitated"/>
+                                        <ComboBoxItem Content="Invisible"/>
+                                        <ComboBoxItem Content="Paralyzed"/>
+                                        <ComboBoxItem Content="Petrified"/>
+                                        <ComboBoxItem Content="Poisoned"/>
+                                        <ComboBoxItem Content="Prone"/>
+                                        <ComboBoxItem Content="Restrained"/>
+                                        <ComboBoxItem Content="Stunned"/>
+                                        <ComboBoxItem Content="Unconcious"/>
+                                    </ComboBox>
+                                    <ComboBox x:Name="Condition13b" Visibility="Hidden" Text="Normal" Width="80" HorizontalAlignment="Left" Margin="5,0">
+                                        <ComboBoxItem IsSelected="True" Content=""/>
+                                        <ComboBoxItem Content="Blinded"/>
+                                        <ComboBoxItem Content="Charmed"/>
+                                        <ComboBoxItem Content="Dead"/>
+                                        <ComboBoxItem Content="Deafened"/>
+                                        <ComboBoxItem Content="Frightened"/>
+                                        <ComboBoxItem Content="Grappled"/>
+                                        <ComboBoxItem Content="Incapacitated"/>
+                                        <ComboBoxItem Content="Invisible"/>
+                                        <ComboBoxItem Content="Paralyzed"/>
+                                        <ComboBoxItem Content="Petrified"/>
+                                        <ComboBoxItem Content="Poisoned"/>
+                                        <ComboBoxItem Content="Prone"/>
+                                        <ComboBoxItem Content="Restrained"/>
+                                        <ComboBoxItem Content="Stunned"/>
+                                        <ComboBoxItem Content="Unconcious"/>
+                                    </ComboBox>
+                                </StackPanel>
+                            </Grid>
+                        </StackPanel>
+                    </Border>
+
+                    <!-- Character 14 -->
+                    <Border x:Name="borderCharacter14" Visibility="Hidden" BorderBrush="Blue" CornerRadius="5" BorderThickness="1" Margin="0,1">
+                        <StackPanel x:Name="spCharacter14" Height="60" Width="280">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="1*" />
+                                    <ColumnDefinition Width="7*" />
+                                    <ColumnDefinition Width="3*" />
+                                    <ColumnDefinition Width="4*" />
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="20" />
+                                    <RowDefinition Height="20" />
+                                    <RowDefinition Height="20" />
+                                </Grid.RowDefinitions>
+                                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="0" Grid.Column="0" Grid.RowSpan="3">
+                                    <TextBlock x:Name="txtInitiative14" FontWeight="Bold" FontSize="14" Background="#00000000" Text="14"/>
+                                </StackPanel>
+                                <TextBox x:Name="txtName14" Text="Monster 10" TextWrapping="Wrap" Width="130" HorizontalAlignment="Left" FontWeight="Bold" Grid.Column="1" Grid.Row="0" FontSize="12" BorderBrush="#00000000" Background="#00000000"/>
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Grid.Column="3" Grid.Row="0">
+                                    <Image x:Name="btnUp14" Source="/UpArrow.jpg" Width="18" Height="18" Margin="1,0" MouseDown="btnUp14_MouseDown" Cursor="Hand"/>
+                                    <Image x:Name="btnDown14" Source="/DownArrow.jpg" Width="18" Height="18" Margin="1,0" MouseDown="btnDown14_MouseDown" Cursor="Hand"/>
+                                    <Image x:Name="btnDelete14" Source="/Delete.jpg" Width="18" Height="18" Margin="1,0" MouseDown="btnDelete14_MouseDown" Cursor="Hand"/>
+                                </StackPanel>
+                                <CheckBox x:Name="Lock14" Content="Lock" HorizontalAlignment="Center" Grid.Column="2" Grid.Row="0" VerticalAlignment="Center" IsChecked="False" Click="Lock14_Clicked"/>
+                                <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3">
+                                    <StackPanel Orientation="Horizontal">
+                                        <!--Always Visible-->
+                                        <TextBlock VerticalAlignment="Center"><Run Text="Init:"/></TextBlock>
+                                        <TextBox  x:Name="txtInit14" Width="20" VerticalAlignment="Center" Margin="2,0" TextAlignment="Right" Text="0" PreviewTextInput="IsTextAllowed" GotKeyboardFocus="txtInit14_GotKeyboardFocus"/>
+                                    </StackPanel>
+                                    <StackPanel x:Name="spTracker14" Visibility="Visible" Orientation="Horizontal">
+                                        <TextBlock VerticalAlignment="Center" Margin="5,0"><Run Text="|"/></TextBlock>
+                                        <TextBlock x:Name="lblAC14" VerticalAlignment="Center" MouseDown="lblAC14_MouseDown"><Run Text="AC:"/></TextBlock>
+                                        <TextBox  x:Name="txtACLow14" ToolTip="Highest Miss" Width="20" VerticalAlignment="Center" Margin="2,0" TextAlignment="Right" Text="0" PreviewTextInput="IsTextAllowed" GotKeyboardFocus="txtACLow14_GotKeyboardFocus"/>
+                                        <TextBlock x:Name="txtDash14" VerticalAlignment="Center" ><Run Text="-"/></TextBlock>
+                                        <TextBox  x:Name="txtACHigh14" ToolTip="Lowest Hit" Width="20" VerticalAlignment="Center" Margin="2,0" TextAlignment="Right" Text="20" PreviewTextInput="IsTextAllowed" GotKeyboardFocus="txtACHigh14_GotKeyboardFocus"/>
+                                        <TextBlock VerticalAlignment="Center" Margin="5,0"><Run Text="|"/></TextBlock>
+                                        <TextBlock x:Name="lblHP14" VerticalAlignment="Center"><Run Text="HP:"/></TextBlock>
+                                        <TextBox x:Name="txtTotalDamage14" Width="30" VerticalAlignment="Center" Margin="2,0" TextAlignment="Right" Text="0" PreviewTextInput="IsTextAllowed" GotKeyboardFocus="txtTotalDamage14_GotKeyboardFocus"/>
+                                        <TextBlock VerticalAlignment="Center" FontFamily="Wingdings" Margin="2,0"><Run Text=""/></TextBlock>
+                                        <TextBox x:Name="txtAddDamageAmount14" Width="20" VerticalAlignment="Center" TextAlignment="Right" Text="" PreviewTextInput="IsTextAllowed" GotKeyboardFocus="txtAddDamageAmount14_GotKeyboardFocus" />
+                                        <Button x:Name="btnAddDamage14" Margin="5,0,3,0" Height="15" Width="15" Content="+" Click="btnAddDamage14_Click"/>
+                                        <Button x:Name="btnSubtractDamage14" Margin="3,0,5,0" Height="15" Width="15" Content="-" Click="btnSubtractDamage14_Click"/>
+                                    </StackPanel>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="3">
+                                    <TextBlock Text="Condition:" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                                    <ComboBox x:Name="Condition14a" Text="Normal" Width="80" HorizontalAlignment="Left" Margin="5,0" DropDownClosed="Condition14a_DropDownClosed_1">
+                                        <ComboBoxItem IsSelected="True" Content="Normal"/>
+                                        <ComboBoxItem Content="Blinded"/>
+                                        <ComboBoxItem Content="Charmed"/>
+                                        <ComboBoxItem Content="Dead"/>
+                                        <ComboBoxItem Content="Deafened"/>
+                                        <ComboBoxItem Content="Frightened"/>
+                                        <ComboBoxItem Content="Grappled"/>
+                                        <ComboBoxItem Content="Incapacitated"/>
+                                        <ComboBoxItem Content="Invisible"/>
+                                        <ComboBoxItem Content="Paralyzed"/>
+                                        <ComboBoxItem Content="Petrified"/>
+                                        <ComboBoxItem Content="Poisoned"/>
+                                        <ComboBoxItem Content="Prone"/>
+                                        <ComboBoxItem Content="Restrained"/>
+                                        <ComboBoxItem Content="Stunned"/>
+                                        <ComboBoxItem Content="Unconcious"/>
+                                    </ComboBox>
+                                    <ComboBox x:Name="Condition14b" Visibility="Hidden" Text="Normal" Width="80" HorizontalAlignment="Left" Margin="5,0">
+                                        <ComboBoxItem IsSelected="True" Content=""/>
+                                        <ComboBoxItem Content="Blinded"/>
+                                        <ComboBoxItem Content="Charmed"/>
+                                        <ComboBoxItem Content="Dead"/>
+                                        <ComboBoxItem Content="Deafened"/>
+                                        <ComboBoxItem Content="Frightened"/>
+                                        <ComboBoxItem Content="Grappled"/>
+                                        <ComboBoxItem Content="Incapacitated"/>
+                                        <ComboBoxItem Content="Invisible"/>
+                                        <ComboBoxItem Content="Paralyzed"/>
+                                        <ComboBoxItem Content="Petrified"/>
+                                        <ComboBoxItem Content="Poisoned"/>
+                                        <ComboBoxItem Content="Prone"/>
+                                        <ComboBoxItem Content="Restrained"/>
+                                        <ComboBoxItem Content="Stunned"/>
+                                        <ComboBoxItem Content="Unconcious"/>
+                                    </ComboBox>
+                                </StackPanel>
+                            </Grid>
+                        </StackPanel>
+                    </Border>
+
+                    <!-- Character 15 -->
+                    <Border x:Name="borderCharacter15" Visibility="Hidden" BorderBrush="Blue" CornerRadius="5" BorderThickness="1" Margin="0,1">
+                        <StackPanel x:Name="spCharacter15" Height="60" Width="280">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="1*" />
+                                    <ColumnDefinition Width="7*" />
+                                    <ColumnDefinition Width="3*" />
+                                    <ColumnDefinition Width="4*" />
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="20" />
+                                    <RowDefinition Height="20" />
+                                    <RowDefinition Height="20" />
+                                </Grid.RowDefinitions>
+                                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="0" Grid.Column="0" Grid.RowSpan="3">
+                                    <TextBlock x:Name="txtInitiative15" FontWeight="Bold" FontSize="14" Background="#00000000" Text="15"/>
+                                </StackPanel>
+                                <TextBox x:Name="txtName15" Text="Monster 11" TextWrapping="Wrap" Width="130" HorizontalAlignment="Left" FontWeight="Bold" Grid.Column="1" Grid.Row="0" FontSize="12" BorderBrush="#00000000" Background="#00000000"/>
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Grid.Column="3" Grid.Row="0">
+                                    <Image x:Name="btnUp15" Source="/UpArrow.jpg" Width="18" Height="18" Margin="1,0" MouseDown="btnUp15_MouseDown" Cursor="Hand"/>
+                                    <Image x:Name="btnDown15" Source="/DownArrow.jpg" Width="18" Height="18" Margin="1,0" MouseDown="btnDown15_MouseDown" Cursor="Hand"/>
+                                    <Image x:Name="btnDelete15" Source="/Delete.jpg" Width="18" Height="18" Margin="1,0" MouseDown="btnDelete15_MouseDown" Cursor="Hand"/>
+                                </StackPanel>
+                                <CheckBox x:Name="Lock15" Content="Lock" HorizontalAlignment="Center" Grid.Column="2" Grid.Row="0" VerticalAlignment="Center" IsChecked="False" Click="Lock15_Clicked"/>
+                                <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3">
+                                    <StackPanel Orientation="Horizontal">
+                                        <!--Always Visible-->
+                                        <TextBlock VerticalAlignment="Center"><Run Text="Init:"/></TextBlock>
+                                        <TextBox  x:Name="txtInit15" Width="20" VerticalAlignment="Center" Margin="2,0" TextAlignment="Right" Text="0" PreviewTextInput="IsTextAllowed" GotKeyboardFocus="txtInit15_GotKeyboardFocus"/>
+                                    </StackPanel>
+                                    <StackPanel x:Name="spTracker15" Visibility="Visible" Orientation="Horizontal">
+                                        <TextBlock VerticalAlignment="Center" Margin="5,0"><Run Text="|"/></TextBlock>
+                                        <TextBlock x:Name="lblAC15" VerticalAlignment="Center" MouseDown="lblAC15_MouseDown"><Run Text="AC:"/></TextBlock>
+                                        <TextBox  x:Name="txtACLow15" ToolTip="Highest Miss" Width="20" VerticalAlignment="Center" Margin="2,0" TextAlignment="Right" Text="0" PreviewTextInput="IsTextAllowed" GotKeyboardFocus="txtACLow15_GotKeyboardFocus"/>
+                                        <TextBlock x:Name="txtDash15" VerticalAlignment="Center" ><Run Text="-"/></TextBlock>
+                                        <TextBox  x:Name="txtACHigh15" ToolTip="Lowest Hit" Width="20" VerticalAlignment="Center" Margin="2,0" TextAlignment="Right" Text="20" PreviewTextInput="IsTextAllowed" GotKeyboardFocus="txtACHigh15_GotKeyboardFocus"/>
+                                        <TextBlock VerticalAlignment="Center" Margin="5,0"><Run Text="|"/></TextBlock>
+                                        <TextBlock x:Name="lblHP15" VerticalAlignment="Center"><Run Text="HP:"/></TextBlock>
+                                        <TextBox x:Name="txtTotalDamage15" Width="30" VerticalAlignment="Center" Margin="2,0" TextAlignment="Right" Text="0" PreviewTextInput="IsTextAllowed" GotKeyboardFocus="txtTotalDamage15_GotKeyboardFocus"/>
+                                        <TextBlock VerticalAlignment="Center" FontFamily="Wingdings" Margin="2,0"><Run Text=""/></TextBlock>
+                                        <TextBox x:Name="txtAddDamageAmount15" Width="20" VerticalAlignment="Center" TextAlignment="Right" Text="" PreviewTextInput="IsTextAllowed" GotKeyboardFocus="txtAddDamageAmount15_GotKeyboardFocus" />
+                                        <Button x:Name="btnAddDamage15" Margin="5,0,3,0" Height="15" Width="15" Content="+" Click="btnAddDamage15_Click"/>
+                                        <Button x:Name="btnSubtractDamage15" Margin="3,0,5,0" Height="15" Width="15" Content="-" Click="btnSubtractDamage15_Click"/>
+                                    </StackPanel>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="3">
+                                    <TextBlock Text="Condition:" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                                    <ComboBox x:Name="Condition15a" Text="Normal" Width="80" HorizontalAlignment="Left" Margin="5,0" DropDownClosed="Condition15a_DropDownClosed_1">
+                                        <ComboBoxItem IsSelected="True" Content="Normal"/>
+                                        <ComboBoxItem Content="Blinded"/>
+                                        <ComboBoxItem Content="Charmed"/>
+                                        <ComboBoxItem Content="Dead"/>
+                                        <ComboBoxItem Content="Deafened"/>
+                                        <ComboBoxItem Content="Frightened"/>
+                                        <ComboBoxItem Content="Grappled"/>
+                                        <ComboBoxItem Content="Incapacitated"/>
+                                        <ComboBoxItem Content="Invisible"/>
+                                        <ComboBoxItem Content="Paralyzed"/>
+                                        <ComboBoxItem Content="Petrified"/>
+                                        <ComboBoxItem Content="Poisoned"/>
+                                        <ComboBoxItem Content="Prone"/>
+                                        <ComboBoxItem Content="Restrained"/>
+                                        <ComboBoxItem Content="Stunned"/>
+                                        <ComboBoxItem Content="Unconcious"/>
+                                    </ComboBox>
+                                    <ComboBox x:Name="Condition15b" Visibility="Hidden" Text="Normal" Width="80" HorizontalAlignment="Left" Margin="5,0">
+                                        <ComboBoxItem IsSelected="True" Content=""/>
+                                        <ComboBoxItem Content="Blinded"/>
+                                        <ComboBoxItem Content="Charmed"/>
+                                        <ComboBoxItem Content="Dead"/>
+                                        <ComboBoxItem Content="Deafened"/>
+                                        <ComboBoxItem Content="Frightened"/>
+                                        <ComboBoxItem Content="Grappled"/>
+                                        <ComboBoxItem Content="Incapacitated"/>
+                                        <ComboBoxItem Content="Invisible"/>
+                                        <ComboBoxItem Content="Paralyzed"/>
+                                        <ComboBoxItem Content="Petrified"/>
+                                        <ComboBoxItem Content="Poisoned"/>
+                                        <ComboBoxItem Content="Prone"/>
+                                        <ComboBoxItem Content="Restrained"/>
+                                        <ComboBoxItem Content="Stunned"/>
+                                        <ComboBoxItem Content="Unconcious"/>
+                                    </ComboBox>
+                                </StackPanel>
+                            </Grid>
+                        </StackPanel>
+                    </Border>
+
+
+                </StackPanel>
+            </ScrollViewer>
+
+            <StackPanel x:Name="spMainButtons"  Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,5" Height="50" Width="320" Background="Black">
+                <Image x:Name="btnAddCharacter" Source="/AddButton.jpg" Width="43" Height="43" Margin="10,0,5,0" MouseDown="btnAddCharacter_Click" Cursor="Hand"/>
+                <Image x:Name="btnPrevInitiative" Source="/PrevButton.jpg" Width="43" Height="43" Margin="5,0" MouseDown="btnPrevInitiative_Click" Cursor="Hand"/>
+                <Image x:Name="btnNextInitiative" Source="/NextButton.jpg" Width="43" Height="43" Margin="5,0" MouseDown="btnNextInitiative_Click" Cursor="Hand"/>
+                <Image x:Name="btnSort" Source="/SortButton.jpg" Width="43" Height="43" Margin="5,0" MouseDown="btnSort_Click" Cursor="Hand"/>
+                <Image x:Name="btnClear" Source="/ClearButton.jpg" Width="43" Height="43" Margin="5,0" MouseDown="btnClear_Click" Cursor="Hand"/>
+                <CheckBox x:Name="cbDMMode" Margin="5,5" Content="DM" Foreground="White" VerticalAlignment="Center" Click="cbDMMode_Click"/>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Window>

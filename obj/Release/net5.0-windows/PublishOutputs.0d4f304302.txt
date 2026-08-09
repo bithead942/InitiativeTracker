@@ -1,0 +1,5 @@
+C:\Users\gregs\source\repos\InitiativeTracker\InitiativeTracker\bin\Release\net5.0-windows\publish\InitiativeTracker.exe
+C:\Users\gregs\source\repos\InitiativeTracker\InitiativeTracker\bin\Release\net5.0-windows\publish\InitiativeTracker.dll
+C:\Users\gregs\source\repos\InitiativeTracker\InitiativeTracker\bin\Release\net5.0-windows\publish\InitiativeTracker.deps.json
+C:\Users\gregs\source\repos\InitiativeTracker\InitiativeTracker\bin\Release\net5.0-windows\publish\InitiativeTracker.runtimeconfig.json
+C:\Users\gregs\source\repos\InitiativeTracker\InitiativeTracker\bin\Release\net5.0-windows\publish\InitiativeTracker.pdb

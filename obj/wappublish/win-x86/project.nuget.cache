@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "dgSpecHash": "yXT1UsxSrdauputLBuaCrOoJKrEtb2FLj1jrivJASxPutABLB4AFmQSW5iZdR1KuUyk7KMP8s+HGbSQ/sXt0kg==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\gregs\\source\\repos\\InitiativeTracker\\InitiativeTracker\\InitiativeTracker.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\gregs\\.nuget\\packages\\microsoft.netcore.app.runtime.win-x86\\5.0.13\\microsoft.netcore.app.runtime.win-x86.5.0.13.nupkg.sha512",
+    "C:\\Users\\gregs\\.nuget\\packages\\microsoft.windowsdesktop.app.runtime.win-x86\\5.0.13\\microsoft.windowsdesktop.app.runtime.win-x86.5.0.13.nupkg.sha512",
+    "C:\\Users\\gregs\\.nuget\\packages\\microsoft.aspnetcore.app.runtime.win-x86\\5.0.13\\microsoft.aspnetcore.app.runtime.win-x86.5.0.13.nupkg.sha512"
+  ],
+  "logs": []
+}
